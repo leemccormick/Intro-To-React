@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+ul { list-style-type: none; padding: 0px 10px; }
+li { 
+  margin-bottom: 10px; 
+  display: grid; 
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+}
+img { width: 100px; height: 100px; border-radius: 50%; }
+
+
+.avatar { margin: 5px; border-radius: 50%; min-height: 70px; }
+.profile {
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 10px;
+}
+h1, h2 { margin: 5px; }
+h1 { margin-bottom: 10px; }
+li { margin: 5px; }
+ul {
+  padding-inline-start: 20px;
+}
+.h1ChapterTitle {
+  font-size: 26px;
+  background-color: darkblue;
+  color: white;
+  padding: 10px 10px 10px 10px;
+  margin:  20px 0px 20px 0px;
+  border: 2px solid rgb(216, 22, 22);
+}
+.h2TopicTitle {
+  background-color: darkcyan;
+  color: white;
+  font-size: 20px;
+  padding: 5px 5px 5px 5px;
+  margin:  5px 5px 5px 5px;
+  border: 2px solid rgb(88, 12, 12);
+}
+.my-container {
+  padding: 20px 0px 20px 0px; /* top right bottom left */
+}
+.custom-ul {
+  list-style-type: disc; /* Customize bullet style */
+  padding-left: 20px;    /* Add left padding */
+}
+.custom-ul li {
+  color: blue;           /* Change the text color of list items */
+  font-size: 16px;       /* Change the font size of list items */
+  margin-bottom: 5px;    /* Add spacing between list items */
+}
+.story-li {
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  float: left;
+  margin: 5px;
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 70px;
+  height: 100px;
+}
