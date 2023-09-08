@@ -92,6 +92,10 @@
   color: greenyellow;
 }
 
+.App-hilight-color {
+  color: lightblue;
+}
+
 .App-no-bullet-ul {
   list-style-type: none;
   padding: 0;

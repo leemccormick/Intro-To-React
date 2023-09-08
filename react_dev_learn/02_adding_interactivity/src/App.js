@@ -3,6 +3,7 @@ import './App.css';
 import AddInteractivityDemo from './AddInteractivity';
 import RespondingToEventsDemo from './RespondingToEvent';
 import StateComponentMemoryDemo from './StateAComponentMemory';
+import RenderAndCommitDemo from './RenderAndCommit'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <AddInteractivityDemo />
         <RespondingToEventsDemo />
         <StateComponentMemoryDemo />
+        <RenderAndCommitDemo />
       </body>
     </div>
   );
@@ -38,16 +40,18 @@ export default App;
 import './App.css';
 // Main Default For Some Demo
 export default function SomeDefaultDemo() {
-  return (
-    <div>
-      <h1 className="App-topic">Topic Here</h1>
-      <h2 className="App-title">Title Here</h2>
-      <Demo />
-    </div>
-  );
+    return (
+        <div>
+            <h1 className="App-topic">Topic Here</h1>
+            <h2 className="App-title">Title Here</h2>
+            <Demo />
+        </div>
+    );
 }
 
 function Demo() {
-  return (<div className="App-left-aligned-content"></div>);
+    return (<div className="App-left-aligned-content">
+        <p>To Continue Here...</p>
+    </div>);
 }
 */
