@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import AddInteractivityDemo from './AddInteractivity';
 import RespondingToEventsDemo from './RespondingToEvent';
+import StateComponentMemoryDemo from './StateAComponentMemory';
 
 function App() {
   return (
@@ -17,13 +18,14 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React By Lee McCormick 
+          Learn React By Lee McCormick
         </a>
       </header>
 
       <body className="App-container">
         <AddInteractivityDemo />
         <RespondingToEventsDemo />
+        <StateComponentMemoryDemo />
       </body>
     </div>
   );
