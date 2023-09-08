@@ -4,6 +4,7 @@ import AddInteractivityDemo from './AddInteractivity';
 import RespondingToEventsDemo from './RespondingToEvent';
 import StateComponentMemoryDemo from './StateAComponentMemory';
 import RenderAndCommitDemo from './RenderAndCommit'
+import StateAsSnapshotDemo from './StateAsSnapshot';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <RespondingToEventsDemo />
         <StateComponentMemoryDemo />
         <RenderAndCommitDemo />
+        <StateAsSnapshotDemo />
       </body>
     </div>
   );

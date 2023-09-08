@@ -112,3 +112,7 @@
   background: #aaa;
   padding: 5px;
 }
+
+.App-small-font-size {
+  font-size: 18px;
+}
