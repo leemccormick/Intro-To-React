@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import AddInteractivityDemo from './AddInteractivity';
+import RespondingToEventsDemo from './RespondingToEvent';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
       <body className="App-container">
         <AddInteractivityDemo />
+        <RespondingToEventsDemo />
       </body>
     </div>
   );
