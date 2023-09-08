@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Image from './Image.js';
 import reportWebVitals from './reportWebVitals';
+// This is a demo to render the image for root, uncomment this line to see example
+// import Image from './Image.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
