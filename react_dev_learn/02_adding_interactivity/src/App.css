@@ -116,3 +116,10 @@
 .App-small-font-size {
   font-size: 18px;
 }
+
+.App-container-square {
+  background: #605f5b;
+  padding: 5px;
+  max-height: 50vh;
+  max-width: 50vh;
+}

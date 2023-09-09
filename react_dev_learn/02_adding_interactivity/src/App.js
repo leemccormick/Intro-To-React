@@ -6,6 +6,7 @@ import StateComponentMemoryDemo from './StateAComponentMemory';
 import RenderAndCommitDemo from './RenderAndCommit'
 import StateAsSnapshotDemo from './StateAsSnapshot';
 import QueueingSeriesOfStateUpdatesDemo from './QueueingSeriesOfStateUpdates';
+import UpdatingObjectsInStateDemo from './UpdatingObjectInState';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <RenderAndCommitDemo />
         <StateAsSnapshotDemo />
         <QueueingSeriesOfStateUpdatesDemo />
+        <UpdatingObjectsInStateDemo />
       </body>
     </div>
   );
