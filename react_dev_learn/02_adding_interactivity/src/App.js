@@ -7,6 +7,7 @@ import RenderAndCommitDemo from './RenderAndCommit'
 import StateAsSnapshotDemo from './StateAsSnapshot';
 import QueueingSeriesOfStateUpdatesDemo from './QueueingSeriesOfStateUpdates';
 import UpdatingObjectsInStateDemo from './UpdatingObjectInState';
+import UpdatingArraysInStateDemo from './UpdatingArraysInState';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <StateAsSnapshotDemo />
         <QueueingSeriesOfStateUpdatesDemo />
         <UpdatingObjectsInStateDemo />
+        <UpdatingArraysInStateDemo />
       </body>
     </div>
   );
