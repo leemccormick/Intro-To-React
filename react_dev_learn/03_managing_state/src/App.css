@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,92 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-topic {
+  background-color: rgb(6, 13, 67);
+  color: white;
+  font-size: 32px;
+  padding: 10px 10px 10px 10px; 
+  margin:  10px 10px 10px 10px; 
+  border: 2px solid rgb(88, 12, 12);
+  text-align: center;
+}
+
+.App-title {
+  display: inline-flexbox;
+  background-color: rgb(10, 25, 134);
+  color: white;
+  font-size: 22px;
+  padding: 5px 50px 5px 50px; 
+  margin:  20px 50px 5px 50px;
+  border: 2px solid rgb(88, 12, 12);
+  text-align: center; 
+  justify-content: left; 
+}
+
+.App-container {
+  background-color: #1e222a;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 20px 20px 20px 20px; 
+}
+
+.App-left-aligned-content {
+  text-align: left;
+  display: inline-flexbox;
+  padding: 5px 50px 5px 50px; 
+  margin:  20px 50px 5px 50px;
+}
+
+.App-left-aligned-border {
+  text-align: left;
+  display: inline-flexbox;
+  padding: 5px 50px 5px 50px; 
+  margin:  20px 50px 5px 50px;
+  border: 2px solid rgb(233, 225, 225);
+}
+
+.App-error-color {
+  color: red;
+}
+
+.App-success-color {
+  color: greenyellow;
+}
+
+.App-hilight-color {
+  color: lightblue;
+}
+
+.App-no-bullet-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.App-row-container {
+  display: flex;
+  flex-direction: row;
+  grid-gap: 10px;
+}
+
+.App-toolbar {
+  background: #aaa;
+  padding: 5px;
+}
+
+.App-small-font-size {
+  font-size: 18px;
+  list-style-type: none;
+}
+
+.App-container-square {
+  background: #605f5b;
+  padding: 5px;
+  max-height: 50vh;
+  max-width: 50vh;
 }
