@@ -41,7 +41,7 @@
 .App-topic {
   background-color: rgb(10, 25, 134);
   color: white;
-  font-size: 32px;
+  font-size: 24px;
   padding: 10px 10px 10px 10px;
   margin: 10px 10px 10px 10px;
   border: 2px solid rgb(88, 12, 12);
@@ -124,4 +124,11 @@
   padding: 5px;
   max-height: 50vh;
   max-width: 50vh;
+}
+
+.App-section {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
 }
