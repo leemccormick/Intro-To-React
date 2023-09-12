@@ -32,31 +32,32 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 .App-topic {
-  background-color: rgb(6, 13, 67);
+  background-color: rgb(10, 25, 134);
   color: white;
   font-size: 32px;
-  padding: 10px 10px 10px 10px; 
-  margin:  10px 10px 10px 10px; 
+  padding: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
   border: 2px solid rgb(88, 12, 12);
   text-align: center;
 }
 
 .App-title {
   display: inline-flexbox;
-  background-color: rgb(10, 25, 134);
+  background-color: rgb(6, 13, 67);
   color: white;
   font-size: 22px;
-  padding: 5px 50px 5px 50px; 
-  margin:  20px 50px 5px 50px;
+  padding: 5px 50px 5px 50px;
+  margin: 20px 50px 5px 50px;
   border: 2px solid rgb(88, 12, 12);
-  text-align: center; 
-  justify-content: left; 
+  text-align: center;
+  justify-content: left;
 }
 
 .App-container {
@@ -66,21 +67,21 @@
   justify-content: left;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 20px 20px 20px 20px; 
+  padding: 20px 20px 20px 20px;
 }
 
 .App-left-aligned-content {
   text-align: left;
   display: inline-flexbox;
-  padding: 5px 50px 5px 50px; 
-  margin:  20px 50px 5px 50px;
+  padding: 5px 50px 5px 50px;
+  margin: 20px 50px 5px 50px;
 }
 
 .App-left-aligned-border {
   text-align: left;
   display: inline-flexbox;
-  padding: 5px 50px 5px 50px; 
-  margin:  20px 50px 5px 50px;
+  padding: 5px 50px 5px 50px;
+  margin: 20px 50px 5px 50px;
   border: 2px solid rgb(233, 225, 225);
 }
 

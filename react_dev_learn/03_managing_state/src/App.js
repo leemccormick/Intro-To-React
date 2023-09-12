@@ -33,13 +33,165 @@ import ScalingUpWithReducerAndContextDemo from './07ScalingUpWithReducerAndConte
 
 function App() {
   const [topicIndex, setTopicIndex] = useState(0);
+  const [highlightedTopic0, setHighlightedTopic0] = useState(true);
+  const [highlightedTopic1, setHighlightedTopic1] = useState(false);
+  const [highlightedTopic2, setHighlightedTopic2] = useState(false);
+  const [highlightedTopic3, setHighlightedTopic3] = useState(false);
+  const [highlightedTopic4, setHighlightedTopic4] = useState(false);
+  const [highlightedTopic5, setHighlightedTopic5] = useState(false);
+  const [highlightedTopic6, setHighlightedTopic6] = useState(false);
+  const [highlightedTopic7, setHighlightedTopic7] = useState(false);
 
-
-  const handleTopicClick = (index) => {
-    console.log('Clicked with index:', index);
-    setTopicIndex(index);
+  const buttonStyle0 = {
+    backgroundColor: highlightedTopic0 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic0 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic0 ? 'orange' : 'red',
   };
 
+  const buttonStyle1 = {
+    backgroundColor: highlightedTopic1 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic1 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic1 ? 'orange' : 'red',
+  };
+
+  const buttonStyle2 = {
+    backgroundColor: highlightedTopic2 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic2 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic2 ? 'orange' : 'red',
+  };
+
+  const buttonStyle3 = {
+    backgroundColor: highlightedTopic3 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic3 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic3 ? 'orange' : 'red',
+  };
+
+  const buttonStyle4 = {
+    backgroundColor: highlightedTopic4 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic4 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic4 ? 'orange' : 'red',
+  };
+
+  const buttonStyle5 = {
+    backgroundColor: highlightedTopic5 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic5 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic5 ? 'orange' : 'red',
+  };
+
+  const buttonStyle6 = {
+    backgroundColor: highlightedTopic6 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic6 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic6 ? 'orange' : 'red',
+  };
+
+  const buttonStyle7 = {
+    backgroundColor: highlightedTopic7 ? 'lightblue' : 'darkblue',
+    color: highlightedTopic7 ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: highlightedTopic7 ? 'orange' : 'red',
+  };
+
+  const handleTopicClick = (index) => {
+    setTopicIndex(index);
+
+    if (index === 0) {
+      setHighlightedTopic0(true);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(false);
+    } else if (index === 1) {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(true);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(false);
+    } else if (index === 2) {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(true);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(false);
+    } else if (index === 3) {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(true);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(false);
+    } else if (index === 4) {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(true);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(false);
+    } else if (index === 5) {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(true);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(false);
+    } else if (index === 6) {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(true);
+      setHighlightedTopic7(false);
+    } else if (index === 7) {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(true);
+    } else {
+      setHighlightedTopic0(false);
+      setHighlightedTopic1(false);
+      setHighlightedTopic2(false);
+      setHighlightedTopic3(false);
+      setHighlightedTopic4(false);
+      setHighlightedTopic5(false);
+      setHighlightedTopic6(false);
+      setHighlightedTopic7(false);
+    }
+  };
 
   return (
     <div className="App">
@@ -59,44 +211,32 @@ function App() {
       </header>
 
       <body className="App-container">
+        <div className='App-row-container'>
+          <button className="App-topic" style={buttonStyle0} onClick={() => handleTopicClick(0)}>Managing State</button>
+          <button className="App-topic" style={buttonStyle1} onClick={() => handleTopicClick(1)}>Reacting to Input with State</button>
+          <button className="App-topic" style={buttonStyle2} onClick={() => handleTopicClick(2)}>Choosing the State Structure </button>
+        </div>
+
+        <div className='App-row-container'>
+          <button className="App-topic" style={buttonStyle3} onClick={() => handleTopicClick(3)}>Sharing State Between Components</button>
+          <button className="App-topic" style={buttonStyle4} onClick={() => handleTopicClick(4)}>Preserving and Resetting State</button>
+          <button className="App-topic" style={buttonStyle5} onClick={() => handleTopicClick(5)}>Extracting State Logic into a Reducer</button>
+        </div>
+
+        <div className='App-row-container '>
+          <button className="App-topic" style={buttonStyle6} onClick={() => handleTopicClick(6)}>Passing Data Deeply with Context</button>
+          <button className="App-topic" style={buttonStyle7} onClick={() => handleTopicClick(7)}>Scaling Up with Reducer and Context</button>
+        </div>
+
         <div>
-          <button className="App-topic" onClick={() => handleTopicClick(0)}>Managing State</button>
           {topicIndex === 0 && <ManagingStateDemo />}
-        </div>
-
-        <div>
-          <button className="App-topic" onClick={() => handleTopicClick(1)}>Reacting to Input with State</button>
           {topicIndex === 1 && <ReactingInputWithStateDemo />}
-        </div>
-
-        <div>
-          <button className="App-topic" onClick={() => handleTopicClick(2)}>Choosing the State Structure</button>
           {topicIndex === 2 && <ChoosingTheStateStructureDemo />}
-        </div>
-
-        <div>
-          <button className="App-topic" onClick={() => handleTopicClick(3)}>Sharing State Between Components</button>
           {topicIndex === 3 && <SharingStateBetweenComponentsDemo />}
-        </div>
-
-        <div>
-          <button className="App-topic" onClick={() => handleTopicClick(4)}>Preserving and Resetting State</button>
           {topicIndex === 4 && <PreservingAndResettingStateDemo />}
-        </div>
-
-        <div>
-          <button className="App-topic" onClick={() => handleTopicClick(5)}>Extracting State Logic into a Reducer</button>
           {topicIndex === 5 && <ExtractingStateLogicIntoReducerDemo />}
-        </div>
-
-        <div>
-          <button className="App-topic" onClick={() => handleTopicClick(6)}>Passing Data Deeply with Context</button>
           {topicIndex === 6 && <PassingDataDeeplyWithContextDemo />}
-        </div>
-
-        <div>
-          <button className="App-topic" onClick={() => handleTopicClick(7)}>Scaling Up with Reducer and Context</button>
-          {topicIndex === 1 && <ScalingUpWithReducerAndContextDemo />}
+          {topicIndex === 7 && <ScalingUpWithReducerAndContextDemo />}
         </div>
       </body>
     </div>
