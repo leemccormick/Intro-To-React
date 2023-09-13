@@ -32,11 +32,11 @@ import ScalingUpWithReducerAndContextDemo from './07ScalingUpWithReducerAndConte
 */
 
 function App() {
-  const [topicIndex, setTopicIndex] = useState(2);
+  const [topicIndex, setTopicIndex] = useState(3);
   const [highlightedTopic0, setHighlightedTopic0] = useState(false);
   const [highlightedTopic1, setHighlightedTopic1] = useState(false);
-  const [highlightedTopic2, setHighlightedTopic2] = useState(true);
-  const [highlightedTopic3, setHighlightedTopic3] = useState(false);
+  const [highlightedTopic2, setHighlightedTopic2] = useState(false);
+  const [highlightedTopic3, setHighlightedTopic3] = useState(true);
   const [highlightedTopic4, setHighlightedTopic4] = useState(false);
   const [highlightedTopic5, setHighlightedTopic5] = useState(false);
   const [highlightedTopic6, setHighlightedTopic6] = useState(false);
