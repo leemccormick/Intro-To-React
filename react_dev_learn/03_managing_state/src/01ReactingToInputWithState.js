@@ -7,7 +7,7 @@ export default function ReactingInputWithStateDemo() {
     return (
         <div>
             <h2 className="App-title">How declarative UI compares to imperative</h2>
-            <HowDeclarativeUIComparesToImperativeDemo /> 
+            <HowDeclarativeUIComparesToImperativeDemo />
 
             <h2 className="App-title">Thinking about UI declaratively</h2>
             <ThinkingAboutUIDeclarativelyDemo />
@@ -88,7 +88,21 @@ function Step5ConnectDemo() {
 // Recap
 function ReactingInputWithStateRecapDemo() {
     return (<div className="App-left-aligned-content">
-        <p>To Continue Here...</p>
+        <ul>
+            <li>
+                Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
+            </li>
+            <li>
+                When developing a component:
+                <div className='App-left-aligned-border'>
+                    <li className='App-medium-font-size'>1.Identify all its visual states.</li>
+                    <li className='App-medium-font-size'>2.Determine the human and computer triggers for state changes.</li>
+                    <li className='App-medium-font-size'>3.Model the state with useState.</li>
+                    <li className='App-medium-font-size'>4.Remove non-essential state to avoid bugs and paradoxes.</li>
+                    <li className='App-medium-font-size'>5.Connect the event handlers to set state.</li>
+                </div>
+            </li>
+        </ul>
     </div>);
 }
 

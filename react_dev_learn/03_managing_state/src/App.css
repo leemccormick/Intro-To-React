@@ -119,6 +119,11 @@
   list-style-type: none;
 }
 
+.App-medium-font-size {
+  font-size: 24px;
+  list-style-type: none;
+}
+
 .App-container-square {
   background: #605f5b;
   padding: 5px;
