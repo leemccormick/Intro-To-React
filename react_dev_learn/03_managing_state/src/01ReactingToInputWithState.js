@@ -570,7 +570,7 @@ function Challenge2EditProfile() {
     let fullName = firstName + ' ' + lastName;
     let submitText = 'Edit Profile';
 
-    if (displayMode == 'save') {
+    if (displayMode === 'save') {
         submitText = 'Edit Profile';
     } else {
         submitText = 'Save Profile';
@@ -586,7 +586,7 @@ function Challenge2EditProfile() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (displayMode == 'save') {
+        if (displayMode === 'save') {
             setDisplayMode('edit');
         } else {
             setFirstName(firstName);
