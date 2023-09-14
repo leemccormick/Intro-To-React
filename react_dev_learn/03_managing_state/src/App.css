@@ -103,7 +103,6 @@
   width: 50%;
 }
 
-
 .App-error-color {
   color: red;
 }
@@ -179,4 +178,33 @@
 
 .App-picture--active {
   border: 5px solid #a6b5ff;
+}
+
+.App-img-small {
+  width: 50%;
+  height: 50%;
+}
+
+.App-img-medium {
+  width: 80%;
+  height: 80%;
+}
+
+.App-counter {
+  width: 100px;
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 0 20px 20px 0;
+  float: left;
+}
+
+.App-hover {
+  background: #ffffd8;
+}
+
+.App-fancy {
+  border: 5px solid gold;
+  color: #ff6767;
 }
