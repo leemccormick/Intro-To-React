@@ -908,7 +908,7 @@ function Challenge4Gallery() {
             <h3>
                 Image {index + 1} of {imagesChallenge4.length}
             </h3>
-            <img key={image.src} src={image.src} />
+            <img key={image.src} src={image.src} alt={image.place}/>
             <p>
                 {image.place}
             </p>
