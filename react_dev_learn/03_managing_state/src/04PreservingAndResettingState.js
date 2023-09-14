@@ -419,7 +419,7 @@ function Option1Counter({ person }) {
 
 function Option1Scoreboard() {
     const [isPlayerA, setIsPlayerA] = useState(true);
-    
+
     return (
         <div>
             {isPlayerA &&
@@ -580,7 +580,7 @@ function Messenger() {
 
 function MessengerWithKey() {
     const [to, setTo] = useState(contacts[0]);
-    
+
     return (
         <div>
             <p className='App-success-color'>Chat key=to.id contact=to </p>
@@ -631,9 +631,44 @@ function RecapPreservingAndResettingStateDemo() {
 Challenge 1 of 5: Fix disappearing input text 
 - This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
  */
+function Challenge1Form({ text, setText }) {
+    return (
+        <textarea
+            value={text}
+            onChange={e => setText(e.target.value)}
+        />
+    );
+}
+
+function Challenge1App() {
+    const [showHint, setShowHint] = useState(false);
+    const [text, setText] = useState('');
+
+    if (showHint) {
+        return (
+            <div>
+                <p><i>Hint: Your favorite city?</i></p>
+                <Challenge1Form text={text} setText={setText} />
+                <button onClick={() => {
+                    setShowHint(false);
+                }}>Hide hint</button>
+            </div>
+        );
+    }
+    return (
+        <div>
+            <Challenge1Form text={text} setText={setText} />
+            <button onClick={() => {
+                setShowHint(true);
+            }}>Show hint</button>
+        </div>
+    );
+}
+
 function Challenge1PreservingAndResettingStateDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 1 of 5: Fix disappearing input text </p>
+        <Challenge1App ></Challenge1App>
     </div>);
 }
 
@@ -643,9 +678,58 @@ Challenge 2 of 5: Swap two form fields
 - This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the “Last name” field will appear before the “First name” field.
 - It almost works, but there is a bug. If you fill in the “First name” input and tick the checkbox, the text will stay in the first input (which is now “Last name”). Fix it so that the input text also moves when you reverse the order.
  */
+function Challenge2Field({ label, text, setText }) {
+    return (
+        <label>
+            {label}:{' '}
+            <input
+                type="text"
+                value={text}
+                placeholder={label}
+                onChange={e => setText(e.target.value)}
+            />
+        </label>
+    );
+}
+
+function Challenge2App() {
+    const [reverse, setReverse] = useState(false);
+    const [firstNameText, setfirstNameText] = useState('');
+    const [lastNameText, setLastNameText] = useState('');
+
+    let checkbox = (
+        <label>
+            <input
+                type="checkbox"
+                checked={reverse}
+                onChange={e => setReverse(e.target.checked)}
+            />
+            Reverse order
+        </label>
+    );
+    if (reverse) {
+        return (
+            <>
+                <Challenge2Field label="Last name" text={lastNameText} setText={setLastNameText} />
+                <Challenge2Field label="First name" text={firstNameText} setText={setfirstNameText} />
+                {checkbox}
+            </>
+        );
+    } else {
+        return (
+            <>
+                <Challenge2Field label="First name" text={firstNameText} setText={setfirstNameText} />
+                <Challenge2Field label="Last name" text={lastNameText} setText={setLastNameText} />
+                {checkbox}
+            </>
+        );
+    }
+}
+
 function Challenge2PreservingAndResettingStateDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 2 of 5: Swap two form fields </p>
+        <Challenge2App />
     </div>);
 }
 
@@ -655,9 +739,123 @@ Challenge 3 of 5: Reset a detail form
 - This is an editable contact list. You can edit the selected contact’s details and then either press “Save” to update it, or “Reset” to undo your changes.
 - When you select a different contact (for example, Alice), the state updates but the form keeps showing the previous contact’s details. Fix it so that the form gets reset when the selected contact changes.
 */
+function Challenge3ContactList({
+    contacts,
+    selectedId,
+    onSelect
+}) {
+    return (
+        <section>
+            <ul>
+                {contacts.map(contact =>
+                    <li key={contact.id}>
+                        <button onClick={() => {
+                            onSelect(contact.id);
+                        }}>
+                            {contact.id === selectedId ?
+                                <b>{contact.name}</b> :
+                                contact.name
+                            }
+                        </button>
+                    </li>
+                )}
+            </ul>
+        </section>
+    );
+}
+
+function Challenge3EditContact({ initialData, onSave }) {
+    const [name, setName] = useState(initialData.name);
+    const [email, setEmail] = useState(initialData.email);
+    return (
+        <section>
+            <label>
+                Name:{' '}
+                <input
+                    type="text"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
+            </label>
+            <label>
+                Email:{' '}
+                <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+            </label>
+            <button onClick={() => {
+                const updatedData = {
+                    id: initialData.id,
+                    name: name,
+                    email: email
+                };
+                onSave(updatedData);
+            }}>
+                Save
+            </button>
+            <button onClick={() => {
+                setName(initialData.name);
+                setEmail(initialData.email);
+            }}>
+                Reset
+            </button>
+        </section>
+    );
+}
+
+const initialContactsChallenge3 = [
+    { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+    { id: 1, name: 'Alice', email: 'alice@mail.com' },
+    { id: 2, name: 'Bob', email: 'bob@mail.com' }
+];
+
+function Challenge3ContactManager() {
+    const [
+        contacts,
+        setContacts
+    ] = useState(initialContactsChallenge3);
+    const [
+        selectedId,
+        setSelectedId
+    ] = useState(0);
+    const selectedContact = contacts.find(c =>
+        c.id === selectedId
+    );
+
+    function handleSave(updatedData) {
+        const nextContacts = contacts.map(c => {
+            if (c.id === updatedData.id) {
+                return updatedData;
+            } else {
+                return c;
+            }
+        });
+        setContacts(nextContacts);
+    }
+
+    return (
+        <div>
+            <Challenge3ContactList
+                contacts={contacts}
+                selectedId={selectedId}
+                onSelect={id => setSelectedId(id)}
+            />
+            <hr />
+            <Challenge3EditContact
+                key={selectedId}
+                initialData={selectedContact}
+                onSave={handleSave}
+            />
+        </div>
+    )
+}
+
 function Challenge3PreservingAndResettingStateDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 3 of 5: Reset a detail form </p>
+        <Challenge3ContactManager />
     </div>);
 }
 
@@ -666,9 +864,62 @@ function Challenge3PreservingAndResettingStateDemo() {
 Challenge 4 of 5: Clear an image while it’s loading 
 - When you press “Next”, the browser starts loading the next image. However, because it’s displayed in the same <img> tag, by default you would still see the previous image until the next one loads. This may be undesirable if it’s important for the text to always match the image. Change it so that the moment you press “Next”, the previous image immediately clears.
  */
+let imagesChallenge4 = [{
+    place: 'Penang, Malaysia',
+    src: 'https://i.imgur.com/FJeJR8M.jpg'
+}, {
+    place: 'Lisbon, Portugal',
+    src: 'https://i.imgur.com/dB2LRbj.jpg'
+}, {
+    place: 'Bilbao, Spain',
+    src: 'https://i.imgur.com/z08o2TS.jpg'
+}, {
+    place: 'Valparaíso, Chile',
+    src: 'https://i.imgur.com/Y3utgTi.jpg'
+}, {
+    place: 'Schwyz, Switzerland',
+    src: 'https://i.imgur.com/JBbMpWY.jpg'
+}, {
+    place: 'Prague, Czechia',
+    src: 'https://i.imgur.com/QwUKKmF.jpg'
+}, {
+    place: 'Ljubljana, Slovenia',
+    src: 'https://i.imgur.com/3aIiwfm.jpg'
+}];
+
+function Challenge4Gallery() {
+    const [index, setIndex] = useState(0);
+    const hasNext = index < imagesChallenge4.length - 1;
+
+    function handleClick() {
+        if (hasNext) {
+            setIndex(index + 1);
+        } else {
+            setIndex(0);
+        }
+    }
+
+    let image = imagesChallenge4[index];
+    return (
+        <>
+            <button onClick={handleClick}>
+                Next
+            </button>
+            <h3>
+                Image {index + 1} of {imagesChallenge4.length}
+            </h3>
+            <img key={image.src} src={image.src} />
+            <p>
+                {image.place}
+            </p>
+        </>
+    );
+}
+
 function Challenge4PreservingAndResettingStateDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 4 of 5: Clear an image while it’s loading </p>
+        <Challenge4Gallery />
     </div>);
 }
 
@@ -678,9 +929,65 @@ Challenge 5 of 5: Fix misplaced state in the list
 - In this list, each Contact has state that determines whether “Show email” has been pressed for it. Press “Show email” for Alice, and then tick the “Show in reverse order” checkbox. You will notice that it’s Taylor’s email that is expanded now, but Alice’s—which has moved to the bottom—appears collapsed.
 - Fix it so that the expanded state is associated with each contact, regardless of the chosen ordering.
  */
+function Challenge5Contact({ contact }) {
+    const [expanded, setExpanded] = useState(false);
+
+    return (
+        <>
+            <p><b>{contact.name}</b></p>
+            {expanded &&
+                <p><i>{contact.email}</i></p>
+            }
+            <button onClick={() => {
+                setExpanded(!expanded);
+            }}>
+                {expanded ? 'Hide' : 'Show'} email
+            </button>
+        </>
+    );
+}
+
+const contactsChallenge5 = [
+    { id: 0, name: 'Alice', email: 'alice@mail.com' },
+    { id: 1, name: 'Bob', email: 'bob@mail.com' },
+    { id: 2, name: 'Taylor', email: 'taylor@mail.com' }
+];
+
+function Challenge5ContactList() {
+    const [reverse, setReverse] = useState(false);
+
+    const displayedContacts = [...contactsChallenge5];
+    if (reverse) {
+        displayedContacts.reverse();
+    }
+
+    return (
+        <>
+            <label>
+                <input
+                    type="checkbox"
+                    value={reverse}
+                    onChange={e => {
+                        setReverse(e.target.checked)
+                    }}
+                />{' '}
+                Show in reverse order
+            </label>
+            <ul>
+                {displayedContacts.map((contact) =>
+                    <li key={contact.id}>
+                        <Challenge5Contact contact={contact} />
+                    </li>
+                )}
+            </ul>
+        </>
+    );
+}
+
 function Challenge5PreservingAndResettingStateDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 5 of 5: Fix misplaced state in the list </p>
+        <Challenge5ContactList />
     </div>);
 }
 
