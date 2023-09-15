@@ -146,6 +146,15 @@
   grid-gap: 10px;
 }
 
+.App-row-center-container {
+  display: flex;
+  flex-direction: row;
+  grid-gap: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .App-toolbar {
   background: #aaa;
   padding: 5px;
