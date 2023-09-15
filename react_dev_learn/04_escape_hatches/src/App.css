@@ -1,0 +1,265 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App-topic {
+  background-color: rgb(10, 25, 134);
+  color: white;
+  font-size: 24px;
+  padding: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
+  border: 2px solid rgb(88, 12, 12);
+  text-align: center;
+}
+
+.App-title {
+  display: inline-flexbox;
+  background-color: rgb(6, 13, 67);
+  color: white;
+  font-size: 22px;
+  padding: 5px 50px 5px 50px;
+  margin: 20px 50px 5px 50px;
+  border: 2px solid rgb(88, 12, 12);
+  text-align: center;
+  justify-content: left;
+}
+
+.App-container {
+  background-color: #1e222a;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 20px 20px 20px 20px;
+}
+
+.App-left-aligned-content {
+  text-align: left;
+  display: inline-flexbox;
+  padding: 5px 50px 5px 50px;
+  margin: 20px 50px 5px 50px;
+}
+
+.App-left-aligned-border {
+  text-align: left;
+  display: inline-flexbox;
+  padding: 5px 50px 5px 50px;
+  margin: 20px 50px 5px 50px;
+  border: 2px solid rgb(233, 225, 225);
+}
+
+.App-small-box-border {
+  text-align: center;
+  display: inline-flexbox;
+  padding: 5px 10px 5px 10px;
+  margin: 5px 10px 5px 10px;
+  border: 2px solid rgb(110, 196, 236);
+  width: 50%;
+}
+
+.App-left-aligned-small-box-border {
+  text-align: left;
+  display: inline-flexbox;
+  padding: 5px 10px 5px 10px;
+  margin: 5px 10px 5px 10px;
+  border: 2px solid rgb(110, 196, 236);
+  width: 50%;
+}
+
+.App-smallest-box-border-success-color {
+  text-align: left;
+  display: inline-flexbox;
+  padding: 5px 10px 5px 10px;
+  margin: 5px 10px 5px 10px;
+  border: 4px solid rgb(110, 236, 133);
+  width: 35%;
+}
+
+.App-smallest-box-border-error-color {
+  text-align: left;
+  display: inline-flexbox;
+  padding: 5px 10px 5px 10px;
+  margin: 5px 10px 5px 10px;
+  border: 4px solid#e41f1f;
+  width: 35%;
+}
+
+.App-error-color {
+  color: red;
+}
+
+.App-success-color {
+  color: greenyellow;
+}
+
+.App-hilight-color {
+  color: lightblue;
+}
+
+.App-no-bullet-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.App-row-container {
+  display: flex;
+  flex-direction: row;
+  grid-gap: 10px;
+}
+
+.App-toolbar {
+  background: #aaa;
+  padding: 5px;
+}
+
+.App-small-font-size {
+  font-size: 18px;
+  list-style-type: none;
+}
+
+.App-medium-font-size {
+  font-size: 24px;
+  list-style-type: none;
+}
+
+.App-container-square {
+  background: #605f5b;
+  padding: 5px;
+  max-height: 50vh;
+  max-width: 50vh;
+}
+
+.App-section {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+.App-background {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+}
+
+.App-background--active {
+  background: #a6b5ff;
+}
+
+.App-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  border: 5px solid transparent;
+}
+
+.App-picture--active {
+  border: 5px solid #a6b5ff;
+}
+
+.App-img-small {
+  width: 50%;
+  height: 50%;
+}
+
+.App-img-medium {
+  width: 80%;
+  height: 80%;
+}
+
+.App-counter {
+  width: 100px;
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 0 20px 20px 0;
+  float: left;
+}
+
+.App-hover {
+  background: #ffffd8;
+}
+
+.App-fancy {
+  border: 5px solid gold;
+  color: #ff6767;
+}
+
+.App-center-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.App-center-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 50%;
+  left: 0;
+  width: 100%;
+  height: 3px; 
+  background-color: #e41f1f; 
+}
+
+.App-tabbed-content {
+  padding-left: 20px; 
+}
+
+.App-double-tabbed-content {
+  padding-left: 40px; 
+} 
+
+.App-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  /* padding: 10px; Optional: Add some spacing around the buttons */
+}
+
+/* .App-row-container {
+  display: flex;
+  flex-direction: row;
+  grid-gap: 10px;
+} */
