@@ -1,6 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import EscapeHatchesDemo from './00EscapeHaches';
+import ReferencingValuesWithRefsDemo from './01ReferencingValuesWithRefs';
+import ManipulatingTheDOMWithRefsDemo from './02ManipulatingDOMWithRefs';
+import SynchronizingWithEffectsDemo from './03SynchronizingWithEffects';
+import YouMightNotNeedEffectDemo from './04YouMightNotNeedEffect';
+import LifecycleReactiveEffectsDemo from './05LifecycleOfReactiveEffects';
+import SeparatingEventsFromEffectsDemo from './06SeparatingEventsFromEffects';
+import RemovingEffectDependenciesDemo from './07RemovingEffectDependencies';
+import ReusingLogicWithCustomHooksDemo from './08ReusingLogicWithCustomHooks';
+
+function Topic({
+  title,
+  isActive,
+  onClick
+}) {
+  const topicStyle = {
+    backgroundColor: isActive ? 'lightblue' : 'darkblue',
+    color: isActive ? 'black' : 'white',
+    border: '2px solid',
+    fontWeight: 'bold',
+    borderColor: isActive ? 'orange' : 'red',
+    fontSize: '24px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    minHeight: '120px'
+  };
+
+  return (
+    <div>
+      <button style={topicStyle} onClick={onClick}>
+        {title}
+      </button>
+    </div>
+  );
+}
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -23,8 +58,8 @@ function App() {
         </a>
       </header>
 
-      <body >
-        <div className="App-button-container">
+      <body className='App-dark-background'>
+        <div className="App-navigation-container">
           {topics.map((topicTitle, index) => (
             <Topic
               key={index}
@@ -36,52 +71,23 @@ function App() {
         </div >
 
         <div className="App-container">
-          {/* {activeIndex === 0 && <Demo />} */}
+          {activeIndex === 0 && <EscapeHatchesDemo />}
+          {activeIndex === 1 && <ReferencingValuesWithRefsDemo />}
+          {activeIndex === 2 && <ManipulatingTheDOMWithRefsDemo />}
+          {activeIndex === 3 && <SynchronizingWithEffectsDemo />}
+          {activeIndex === 4 && <YouMightNotNeedEffectDemo />}
+          {activeIndex === 5 && <LifecycleReactiveEffectsDemo />}
+          {activeIndex === 6 && <SeparatingEventsFromEffectsDemo />}
+          {activeIndex === 7 && <RemovingEffectDependenciesDemo />}
+          {activeIndex === 8 && <ReusingLogicWithCustomHooksDemo />}
         </div>
       </body>
     </div>
   );
 }
 
-// Escape Hatches
-// Referencing Values with Refs
-// Manipulating the DOM with Refs
-// Synchronizing with Effects
-// You Might Not Need an Effect
-// Lifecycle of Reactive Effects
-// Separating Events from Effects
-// Removing Effect Dependencies
-// Reusing Logic with Custom Hooks
-
-function Topic({
-  title,
-  isActive,
-  onClick
-}) {
-  const topicStyle = {
-    backgroundColor: isActive ? 'lightblue' : 'darkblue',
-    color: isActive ? 'black' : 'white',
-    border: '2px solid',
-    fontWeight: 'bold',
-    borderColor: isActive ? 'orange' : 'red',
-    fontSize: '24px',
-    paddingTop: '10px',
-    paddingBottom: '10px', 
-    height: '100px' 
-  };
-
-  return (
-    <div>
-      <button style={topicStyle} onClick={onClick}>
-        {title}
-      </button>
-    </div>
-  );
-}
-
 export default App;
 
-// This is a template for new section....
 /*
 import './App.css';
 import { useState } from 'react';

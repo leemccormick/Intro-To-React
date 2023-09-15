@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -39,12 +40,12 @@
 }
 
 .App-topic {
-  background-color: rgb(10, 25, 134);
-  color: white;
-  font-size: 24px;
+  background-color: lightblue;
+  color: rgb(6, 13, 67);
+  font-size: 36px;
   padding: 10px 10px 10px 10px;
   margin: 10px 10px 10px 10px;
-  border: 2px solid rgb(88, 12, 12);
+  border: 2px solid orange;
   text-align: center;
 }
 
@@ -52,12 +53,12 @@
   display: inline-flexbox;
   background-color: rgb(6, 13, 67);
   color: white;
-  font-size: 22px;
+  font-size: 24px;
   padding: 5px 50px 5px 50px;
   margin: 20px 50px 5px 50px;
   border: 2px solid rgb(88, 12, 12);
   text-align: center;
-  justify-content: left;
+  justify-content: center;
 }
 
 .App-container {
@@ -238,28 +239,22 @@
   bottom: 50%;
   left: 0;
   width: 100%;
-  height: 3px; 
-  background-color: #e41f1f; 
+  height: 3px;
+  background-color: #e41f1f;
 }
 
 .App-tabbed-content {
-  padding-left: 20px; 
+  padding-left: 20px;
 }
 
 .App-double-tabbed-content {
-  padding-left: 40px; 
-} 
+  padding-left: 40px;
+}
 
-.App-button-container {
+.App-navigation-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  /* padding: 10px; Optional: Add some spacing around the buttons */
+  background-color: #1e222a;
 }
-
-/* .App-row-container {
-  display: flex;
-  flex-direction: row;
-  grid-gap: 10px;
-} */
