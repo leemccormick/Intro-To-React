@@ -267,3 +267,33 @@
   width: 100%;
   background-color: #1e222a;
 }
+
+.App-custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #d4d4d4;
+}
+
+.App-custom-table th,
+.App-custom-table td {
+  border: 1px solid #a4b2e5;
+  padding: 8px;
+}
+
+.App-custom-table th {
+  background-color: #254bae;
+  color: rgb(229, 232, 255);
+  text-align: center;
+  font-size: 28px;
+}
+
+.App-custom-table td { 
+  background-color: #c2d1f7;
+  color: rgb(66, 62, 62);
+  text-align: left;
+  font-size: 20px;
+}
+
+.App-custom-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
