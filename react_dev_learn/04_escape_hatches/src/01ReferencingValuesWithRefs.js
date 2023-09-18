@@ -196,7 +196,7 @@ function UseRefCounter() {
             <div className='App-left-aligned-content'>
                 <p>let countRef = useRef(0);</p>
                 <p> function handleClick() {'{'}</p>
-                <p className='App-tabbed-content App-error-color'>// This doesn't re-render the component!</p>
+                <p className='App-tabbed-content App-error-color'>{'//'} This doesn't re-render the component!</p>
                 <p className='App-tabbed-content'>countRef.current = countRef.current + 1; </p>
                 <p> {'}'}</p>
             </div>

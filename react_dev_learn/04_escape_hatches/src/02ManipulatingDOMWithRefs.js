@@ -253,10 +253,10 @@ function ExampleScrollingToElementDemo() {
                         <div className='App-tabbed-content'>
                             <p>    const map = getMap();</p>
                             <p className='App-hilight-color'>if (node) {'{'}</p>
-                            <p className='App-success-color'>// Add to the Map</p>
+                            <p className='App-success-color'>{'//'} Add to the Map</p>
                             <p className='App-hilight-color'> map.set(cat.id, node);</p>
                             <p className='App-hilight-color'>{'}'} else {'{'}</p>
-                            <p className='App-success-color'>// Remove from the Map</p>
+                            <p className='App-success-color'>{'//'} Remove from the Map</p>
                             <p className='App-hilight-color'>map.delete(cat.id);</p>
                             <p className='App-hilight-color'>{'}'} </p>
                         </div>

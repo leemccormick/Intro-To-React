@@ -180,7 +180,7 @@ function YouMightNotNeedAnEffectExample() {
                 <p> const [lastName, setLastName] = useState('Swift');</p>
 
                 <div className='App-error-color'>
-                    <p>// 🔴 Avoid: redundant state and unnecessary Effect</p>
+                    <p>{'//'} 🔴 Avoid: redundant state and unnecessary Effect</p>
                     <p>useEffect{'('}() ={'>'} {'{'}</p>
                 </div>
                 <div className='App-tabbed-content'>
@@ -204,10 +204,10 @@ function YouMightNotNeedAnEffectCorrectExample() {
             <p> const [lastName, setLastName] = useState('Swift');</p>
 
             <div className='App-success-color'>
-                <p>// ✅ Good: calculated during rendering</p>
+                <p>{'//'}✅ Good: calculated during rendering</p>
                 <p>const fullName = firstName + ' ' + lastName;</p>
             </div>
-            <p>// ...</p>
+            <p>{'//'} ...</p>
         </div>
         <p>{'}'}</p>
     </div>);

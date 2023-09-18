@@ -165,6 +165,13 @@
   list-style-type: none;
 }
 
+.App-super-small-font-size {
+  font-size: 14px;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
 .App-medium-font-size {
   font-size: 24px;
   list-style-type: none;
