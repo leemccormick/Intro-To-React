@@ -297,3 +297,23 @@
 .App-custom-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+.App-li-inline {
+  display: inline;
+  padding: 0.5rem;
+}
+
+.App-active {
+  background: rgba(252, 236, 2, 0.4);
+}
+
+.App-active-red {
+  background: rgba(254, 6, 6, 0.4);
+}
+
+.App-img-with-border {
+  padding: 10px;
+  margin: -10px;
+  transition: background 0.2s linear;
+}
+
