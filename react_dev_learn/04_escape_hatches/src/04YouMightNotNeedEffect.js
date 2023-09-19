@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 // Main Default For You Might Not Need an Effect Demo
 export default function YouMightNotNeedEffectDemo() {
@@ -469,7 +469,7 @@ function SendingPOSTRequestCorrectExample2() {
 
             <p>function handleSubmit(e)  {'{'}</p>
             <p className='App-tabbed-content'> e.preventDefault();</p>
-            <p className='App-tabbed-content App-success-color'>    // ✅ Good: Event-specific logic is in the event handler</p>
+            <p className='App-tabbed-content App-success-color'>{'//'}  ✅ Good: Event-specific logic is in the event handler</p>
             <p className='App-tabbed-content'>   post('/api/register', jsonToSubmit);</p>
             <p>{'}'}</p>
             <p>{'//'} ...</p>
@@ -969,9 +969,77 @@ Challenge 1 of 4: Transform data without Effects
 - The TodoList below displays a list of todos. When the “Show only active todos” checkbox is ticked, completed todos are not displayed in the list. Regardless of which todos are visible, the footer displays the count of todos that are not yet completed.
 - Simplify this component by removing all the unnecessary state and Effects.
 */
+let nextIdChallenge1 = 0;
+
+function createTodoChallenge1(text, completed = false) {
+    return {
+        id: nextIdChallenge1++,
+        text,
+        completed
+    };
+}
+
+function NewTodoChallenge1({ onAdd }) {
+    const [text, setText] = useState('');
+
+    function handleAddClick() {
+        setText('');
+        onAdd(createTodoChallenge1(text));
+    }
+
+    return (
+        <>
+            <input value={text} onChange={e => setText(e.target.value)} />
+            <button onClick={handleAddClick}>
+                Add
+            </button>
+        </>
+    );
+}
+
+const initialTodosChallenge1 = [
+    createTodoChallenge1('Get apples', true),
+    createTodoChallenge1('Get oranges', true),
+    createTodoChallenge1('Get carrots'),
+    createTodoChallenge1('Get water')
+];
+
+function Challenge1TodoList() {
+    const [todos, setTodos] = useState(initialTodosChallenge1);
+    const [showActive, setShowActive] = useState(false);
+    const activeTodos = todos.filter(todo => !todo.completed);
+    const visibleTodos = showActive ? activeTodos : todos;
+
+    return (
+        <>
+            <label>
+                <input
+                    type="checkbox"
+                    checked={showActive}
+                    onChange={e => setShowActive(e.target.checked)}
+                />
+                Show only active todos
+            </label>
+            <br></br>
+            <NewTodoChallenge1 onAdd={newTodo => setTodos([...todos, newTodo])} />
+            <ul>
+                {visibleTodos.map(todo => (
+                    <li key={todo.id}>
+                        {todo.completed ? <s>{todo.text}</s> : todo.text}
+                    </li>
+                ))}
+            </ul>
+            <footer>
+                {activeTodos.length} todos left
+            </footer>
+        </>
+    );
+}
+
 function Challenges1YouMightNotNeedEffectDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 1 of 4: Transform data without Effects </p>
+        <Challenge1TodoList />
     </div>);
 }
 
@@ -982,9 +1050,75 @@ Challenge 2 of 4: Cache a calculation without Effects
 - In this example, filtering the todos was extracted into a separate function called getVisibleTodos(). This function contains a console.log() call inside of it which helps you notice when it’s being called. Toggle “Show only active todos” and notice that it causes getVisibleTodos() to re-run. This is expected because visible todos change when you toggle which ones to display.
 - Your task is to remove the Effect that recomputes the visibleTodos list in the TodoList component. However, you need to make sure that getVisibleTodos() does not re-run (and so does not print any logs) when you type into the input.
 */
+let nextIdChallenge2 = 0;
+let callsChallenge2 = 0;
+
+function getVisibleTodosChallenge2(todos, showActive) {
+    console.log(`getVisibleTodos() was called ${++callsChallenge2} times`);
+    const activeTodos = todos.filter(todo => !todo.completed);
+    const visibleTodos = showActive ? activeTodos : todos;
+    return visibleTodos;
+}
+
+function createTodoChallenge2(text, completed = false) {
+    return {
+        id: nextIdChallenge2++,
+        text,
+        completed
+    };
+}
+
+const initialTodosChallenge2 = [
+    createTodoChallenge2('Get mango challenge2'),
+    createTodoChallenge2('Get apples', true),
+    createTodoChallenge2('Get oranges', true),
+    createTodoChallenge2('Get carrots'),
+];
+
+function Challenge2TodoList() {
+    const [todos, setTodos] = useState(initialTodosChallenge2);
+    const [showActive, setShowActive] = useState(false);
+    const [text, setText] = useState('');
+    const visibleTodos = useMemo(
+        () => getVisibleTodosChallenge2(todos, showActive),
+        [todos, showActive]
+    );
+
+    function handleAddClick() {
+        setText('');
+        setTodos([...todos, createTodoChallenge2(text)]);
+    }
+
+    return (
+        <>
+            <label>
+                <input
+                    type="checkbox"
+                    checked={showActive}
+                    onChange={e => setShowActive(e.target.checked)}
+                />
+                Show only active todos
+            </label>
+            <br></br>
+            <input value={text} onChange={e => setText(e.target.value)} />
+            <button onClick={handleAddClick}>
+                Add
+            </button>
+            <ul>
+                {visibleTodos.map(todo => (
+                    <li key={todo.id}>
+                        {todo.completed ? <s>{todo.text}</s> : todo.text}
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
+}
+
 function Challenges2YouMightNotNeedEffectDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 2 of 4: Cache a calculation without Effects </p>
+        <Challenge2TodoList />
     </div>);
 }
 
@@ -995,9 +1129,135 @@ Challenge 3 of 4: Reset state without Effects
 - This EditContact component receives a contact object shaped like { id, name, email } as the savedContact prop. Try editing the name and email input fields. When you press Save, the contact’s button above the form updates to the edited name. When you press Reset, any pending changes in the form are discarded. Play around with this UI to get a feel for it.
 - When you select a contact with the buttons at the top, the form resets to reflect that contact’s details. This is done with an Effect inside EditContact.js. Remove this Effect. Find another way to reset the form when savedContact.id changes.
 */
+function Challenge3EditForm({ savedContact, onSave }) {
+    const [name, setName] = useState(savedContact.name);
+    const [email, setEmail] = useState(savedContact.email);
+
+    return (
+        <section>
+            <label>
+                Name:{' '}
+                <input
+                    type="text"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
+            </label>
+            <label>
+                Email:{' '}
+                <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+            </label>
+            <button onClick={() => {
+                const updatedData = {
+                    id: savedContact.id,
+                    name: name,
+                    email: email
+                };
+                onSave(updatedData);
+            }}>
+                Save
+            </button>
+            <button onClick={() => {
+                setName(savedContact.name);
+                setEmail(savedContact.email);
+            }}>
+                Reset
+            </button>
+        </section>
+    );
+}
+
+function Challenge3EditContact(props) {
+    return (
+        <Challenge3EditForm
+            {...props}
+            key={props.savedContact.id}
+        />
+    );
+}
+
+function Challenge3ContactList({
+    contacts,
+    selectedId,
+    onSelect
+}) {
+    return (
+        <section>
+            <ul className='App-no-bullet-ul'>
+                {contacts.map(contact =>
+                    <li key={contact.id}>
+                        <button onClick={() => {
+                            onSelect(contact.id);
+                        }}>
+                            {contact.id === selectedId ?
+                                <b>{contact.name}</b> :
+                                contact.name
+                            }
+                        </button>
+                    </li>
+                )}
+            </ul>
+        </section>
+    );
+}
+
+const initialContactsChallenge3 = [
+    { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+    { id: 1, name: 'Alice', email: 'alice@mail.com' },
+    { id: 2, name: 'Bob', email: 'bob@mail.com' },
+    { id: 3, name: 'Lee', email: 'lee@mail.com' },
+];
+
+function Challenge3ContactManager() {
+    const [
+        contacts,
+        setContacts
+    ] = useState(initialContactsChallenge3);
+
+    const [
+        selectedId,
+        setSelectedId
+    ] = useState(0);
+
+    const selectedContact = contacts.find(c =>
+        c.id === selectedId
+    );
+
+    function handleSave(updatedData) {
+        const nextContacts = contacts.map(c => {
+            if (c.id === updatedData.id) {
+                return updatedData;
+            } else {
+                return c;
+            }
+        });
+        setContacts(nextContacts);
+    }
+
+    return (
+        <div>
+            <Challenge3ContactList
+                contacts={contacts}
+                selectedId={selectedId}
+                onSelect={id => setSelectedId(id)}
+            />
+            <hr />
+            <Challenge3EditContact
+                savedContact={selectedContact}
+                onSave={handleSave}
+            />
+        </div>
+    )
+}
+
 function Challenges3YouMightNotNeedEffectDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 3 of 4: Reset state without Effects </p>
+        <Challenge3ContactManager />
     </div>);
 }
 
@@ -1009,9 +1269,53 @@ Challenge 4 of 4: Submit a form without Effects
 - Your app’s users are sending way too many messages. To make chatting a little bit more difficult, you’ve decided to show the “Thank you” dialog first rather than the form. Change the showForm state variable to initialize to false instead of true. As soon as you make that change, the console will show that an empty message was sent. Something in this logic is wrong!
 - What’s the root cause of this problem? And how can you fix it?
 */
+function sendMessageChallenge4(message) {
+    console.log('Sending message: ' + message);
+}
+
+function Challenge4Form() {
+    const [showForm, setShowForm] = useState(true);
+    const [message, setMessage] = useState('');
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setShowForm(false);
+        sendMessageChallenge4(message);
+    }
+
+    if (!showForm) {
+        return (
+            <>
+                <h1>Thanks for using our services!</h1>
+                <button onClick={() => {
+                    setMessage('');
+                    setShowForm(true);
+                }}>
+                    Open chat
+                </button>
+            </>
+        );
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <textarea
+                placeholder="Message"
+                value={message}
+                onChange={e => setMessage(e.target.value)}
+            />
+            <br></br>
+            <button type="submit" disabled={message === ''}>
+                Send
+            </button>
+        </form>
+    );
+}
+
 function Challenges4YouMightNotNeedEffectDemo() {
     return (<div className="App-left-aligned-content">
         <p>Challenge 4 of 4: Submit a form without Effects </p>
+        <Challenge4Form />
     </div>);
 }
 
