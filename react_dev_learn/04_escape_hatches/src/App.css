@@ -263,6 +263,10 @@
   padding-left: 20px;
 }
 
+.App-right-tabbed-content {
+  padding-right: 20px;
+}
+
 .App-double-tabbed-content {
   padding-left: 40px;
 }
