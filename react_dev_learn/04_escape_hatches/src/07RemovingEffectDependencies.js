@@ -1,11 +1,12 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Main Default For Removing Effect Dependencies Demo
 export default function RemovingEffectDependenciesDemo() {
     return (
         <div>
             <h1 className="App-topic">Removing Effect Dependencies</h1>
+            <p>When you write an Effect, the linter will verify that you’ve included every reactive value (like props and state) that the Effect reads in the list of your Effect’s dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop.</p>
 
             <h2 className="App-title"> Dependencies should match the code </h2>
             <DependenciesShouldMatchTheCodeDemo />
@@ -63,19 +64,79 @@ export default function RemovingEffectDependenciesDemo() {
 
 //--------------------------------------------------------------------------------------
 // Dependencies should match the code 
+function createConnectionDependencies(serverUrl, roomId) {
+    // A real implementation would actually connect to the server
+    return {
+        connect() {
+            console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+        },
+        disconnect() {
+            console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+        }
+    };
+}
+
+const serverUrlDependencies = 'https://localhost:1234';
+
+function DependenciesChatRoom({ roomId }) {
+    useEffect(() => {
+        const connection = createConnectionDependencies(serverUrlDependencies, roomId);
+        connection.connect();
+        return () => connection.disconnect();
+    }, [roomId]);
+    return <h1>Welcome to the {roomId} room!</h1>;
+}
+
+function DependenciesApp() {
+    const [roomId, setRoomId] = useState('general');
+
+    return (
+        <>
+            <label>
+                Choose the chat room:{' '}
+                <select
+                    value={roomId}
+                    onChange={e => setRoomId(e.target.value)}
+                >
+                    <option value="general">general</option>
+                    <option value="travel">travel</option>
+                    <option value="music">music</option>
+                </select>
+            </label>
+            <hr />
+            <DependenciesChatRoom roomId={roomId} />
+        </>
+    );
+}
+
 function DependenciesShouldMatchTheCodeDemo() {
     return (<div className="App-left-aligned-content">
-        <p>To Continue Here...</p>
-
+        <p>- When you write an Effect, you first specify how to start and stop whatever you want your Effect to be doing.</p>
+        <p>- Then, if you leave the Effect dependencies empty ({'['}  {']'}), the linter will suggest the correct dependencies.</p>
+        <p>- Fill them in according to what the linter says</p>
+        <hr></hr>
+        <DependenciesApp />
     </div>);
 }
 
 //--------------------------------------------------------------------------------------
 // To remove a dependency, prove that it’s not a dependency 
+const serverUrlRemoveDependency = 'https://localhost:1234';
+const roomIdRemoveDependency = 'music remove dependency demo';
+
+function RemoveDependencyChatRoom() {
+    useEffect(() => {
+        const connection = createConnectionDependencies(serverUrlRemoveDependency, roomIdRemoveDependency);
+        connection.connect();
+        return () => connection.disconnect();
+    }, []);
+    return <h1>Welcome to the {roomIdRemoveDependency} room!</h1>;
+}
+
 function ToRemoveDependencyDemo() {
     return (<div className="App-left-aligned-content">
-        <p>To Continue Here...</p>
-
+        <p>To remove a dependency, “prove” to the linter that it doesn’t need to be a dependency. For example, you can move roomId out of your component to prove that it’s not reactive and won’t change on re-renders:</p>
+        <RemoveDependencyChatRoom />
     </div>);
 }
 
@@ -83,8 +144,13 @@ function ToRemoveDependencyDemo() {
 // To change the dependencies, change the code 
 function ToChangeDependenciesDemo() {
     return (<div className="App-left-aligned-content">
-        <p>To Continue Here...</p>
-
+        <ul>
+            <ol>
+                <li>First, you change the code of your Effect or how your reactive values are declared.</li>
+                <li>Then, you follow the linter and adjust the dependencies to match the code you have changed.</li>
+                <li>If you’re not happy with the list of dependencies, you go back to the first step (and change the code again).</li>
+            </ol>
+        </ul>
     </div>);
 }
 
@@ -92,8 +158,13 @@ function ToChangeDependenciesDemo() {
 // Removing unnecessary dependencies 
 function RemovingUnnecessaryDependenciesDemo() {
     return (<div className="App-left-aligned-content">
-        <p>To Continue Here...</p>
-
+        <ul>
+            <ol>
+                <li>You might want to re-execute different parts of your Effect under different conditions. </li>
+                <li>You might want to only read the latest value of some dependency instead of “reacting” to its changes. </li>
+                <li>A dependency may change too often unintentionally because it’s an object or a function.</li>
+            </ol>
+        </ul>
     </div>);
 }
 
@@ -101,17 +172,83 @@ function RemovingUnnecessaryDependenciesDemo() {
 // Should this code move to an event handler? 
 function ShouldThisCodeMoveToEventHandlerDemo() {
     return (<div className="App-left-aligned-content">
-        <p>To Continue Here...</p>
+        <p>The problem here is that this shouldn’t be an Effect in the first place. You want to send this POST request and show the notification in response to submitting the form, which is a particular interaction. To run some code in response to particular interaction, put that logic directly into the corresponding event handler.</p>
 
-    </div>);
+        <div className='App-left-aligned-small-box-border  App-super-small-font-size App-tabbed-content '>
+            <p>function Form() {'{'} </p>
+            <div className='App-tabbed-content'>
+                <p> const theme = useContext(ThemeContext);</p>
+                <div className='App-hilight-color'>
+                    <p>function handleSubmit() {'{'} </p>
+                    <p className='App-tabbed-content App-comment-color'>    {'//'} ✅  Good: Event-specific logic is called from event handlers</p>
+                    <p className='App-tabbed-content'> post('/api/register');</p>
+                    <p className='App-tabbed-content'> showNotification('Successfully registered!', theme);</p>
+                    <p>{'}'}</p>
+                </div>
+                <p>{'//'} ...</p>
+            </div>
+            <p>{'}'}</p>
+        </div>
+    </div >);
 }
 
 //--------------------------------------------------------------------------------------
 // Is your Effect doing several unrelated things? 
 function IsEffectDoingThingDemo() {
     return (<div className="App-left-aligned-content">
-        <p>To Continue Here...</p>
+        <div className='App-row-container'>
+            <div className='App-smallest-container App-medium-font-size'>
+                <p>The problem with this code is that you’re synchronizing two different unrelated things:</p>
+                <ul>
+                    <ol className='App-no-tabbed-content'>
+                        <li>You want to synchronize the cities state to the network based on the country prop.</li>
+                        <li>You want to synchronize the areas state to the network based on the city state.</li>
+                    </ol>
+                </ul>
+                <hr></hr>
+                <p className='App-hilight-color'>Each Effect should represent an independent synchronization process. In this example, deleting one Effect doesn’t break the other Effect’s logic. This means they synchronize different things, and it’s good to split them up. If you’re concerned about duplication, you can improve this code by extracting repetitive logic into a custom Hook.</p>
+            </div>
 
+            <div className='App-left-aligned-small-box-border  App-super-small-font-size App-tabbed-content '>
+                <p>function ShippingForm({'{'} country {'}'}) {'{'} </p>
+                <div className='App-tabbed-content'>
+                    <p className='App-success-color'>{'//'} ✅ First useEffect </p>
+                    <p>const [cities, setCities] = useState(null);</p>
+                    <div className='App-hilight-color'>
+                        <p>  useEffect{'('} () ={'>'}  {'{'} </p>
+                        <p className='App-tabbed-content'>     let ignore = false; </p>
+                        <p className='App-tabbed-content'>    fetch(`/api/cities?country=${'{'}country{'}'}).then{'('} json  ={'>'} {'{'} </p>
+                        <div className='App-tabbed-content'>
+                            <p className='App-tabbed-content'>    if (!ignore) {'{'} </p>
+                            <p className='App-tabbed-content App-tabbed-content App-tabbed-content'>  setCities(json);</p>
+                            <p className='App-tabbed-content'>  {'}'} </p>
+                            <p>return () ={'>'} {'{'}   ignore = true   {'}'};</p>
+                        </div>
+                        <p className='App-tabbed-content'>{'}'}{')'}; </p>
+                        <p>{'}'}, [country] {')'}; </p>
+                    </div>
+
+                    <p className='App-success-color'>{'//'} ✅ Seconde useEffect </p>
+                    <p>const [city, setCity] = useState(null);</p>
+                    <p>  const [areas, setAreas] = useState(null);</p>
+                    <div className='App-hilight-color'>
+                        <p>  useEffect{'('} () ={'>'}  {'{'} </p>
+                        <p className='App-tabbed-content'>     let ignore = false; </p>
+                        <p className='App-tabbed-content'>    fetch(`/api/areas?city=${'{'}city{'}'}).then{'('} json  ={'>'} {'{'} </p>
+                        <div className='App-tabbed-content'>
+                            <p className='App-tabbed-content'>    if (!ignore) {'{'} </p>
+                            <p className='App-tabbed-content App-tabbed-content App-tabbed-content'>  setAreas(json);</p>
+                            <p className='App-tabbed-content'>  {'}'} </p>
+                            <p>return () ={'>'} {'{'}   ignore = true   {'}'};</p>
+                        </div>
+                        <p className='App-tabbed-content'>{'}'}{')'}; </p>
+                        <p>{'}'}, [city] {')'}; </p>
+                    </div>
+                    <p>{'//'} ...</p>
+                </div>
+                <p>{'}'}</p>
+            </div>
+        </div>
     </div>);
 }
 
@@ -120,7 +257,6 @@ function IsEffectDoingThingDemo() {
 function AreYouReadingSomeStateToCalculateDemo() {
     return (<div className="App-left-aligned-content">
         <p>To Continue Here...</p>
-
     </div>);
 }
 
