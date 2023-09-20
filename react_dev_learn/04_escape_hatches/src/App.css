@@ -352,3 +352,6 @@
   transition: background 0.2s linear;
 }
 
+.App-dark { background: #222; color: #eee; }
+.App-light { background: #eee;; color: #222; }
+
