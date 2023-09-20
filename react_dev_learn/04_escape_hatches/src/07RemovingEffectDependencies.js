@@ -746,7 +746,7 @@ function Welcome({ duration }) {
         return () => {
             animation.stop();
         };
-    }, []);
+    }, [onAppear]);
 
     return (
         <h1
@@ -1011,7 +1011,7 @@ function Challenge4ChatRoom({ roomId, isEncrypted, onMessage }) {
         connection.on("message", (msg) => onReceiveMessage(msg));
         connection.connect();
         return () => connection.disconnect();
-    }, [roomId, isEncrypted]);
+    }, [roomId, isEncrypted, onReceiveMessage]);
 
     return <h1>Welcome to the {roomId} room!</h1>;
 }
