@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { appStyles, screenWidth, SpacingView } from '../components/StyleGuide';
 import { ColorButton } from '../components/CustomButton';
 
@@ -17,7 +17,7 @@ const ColorCounter = ({ color, onIncrease, onDecrease }) => {
         console.log('Decrease  button pressed  in ColorCounter  ! : color is : ' + color);
         onDecrease();
     };
-    
+
     return (
         <View style={[appStyles.box, { width: screenWidth * 0.9, borderColor: lowercaseColor }]}>
             <View style={appStyles.rowContainer}>

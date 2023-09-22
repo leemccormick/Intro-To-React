@@ -1,4 +1,4 @@
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 export const screenWidth = Dimensions.get('window').width; // Get the screen width
 
@@ -9,6 +9,14 @@ export const SpacingView = () => {
 export const UnderlineView = () => {
     return (
         <View style={appStyles.underline}></View>
+    );
+};
+
+export const ErrorView = ({ errorMessage }) => {
+    return (
+        <View style={[appStyles.box, { borderColor: 'red' }]}>
+            <Text style={[appStyles.subtitleStyle, appStyles.errorColor]} >❌ Error : {errorMessage} </Text>
+        </View>
     );
 };
 
@@ -87,5 +95,13 @@ export const appStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    input: {
+        margin: 15,
+        borderColor: 'black',
+        borderWidth: 1
+    },
+    errorColor: {
+        color: 'red'
     }
 });

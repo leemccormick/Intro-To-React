@@ -28,6 +28,10 @@ const HomeScreen = ({ navigation }) => {
     console.log('Custom button pressed ! : Go to Counter screen...');
     navigation.navigate('Counter');
   };
+  const navigateToCounterReducer = () => {
+    console.log('Custom button pressed ! : Go to Counter Reducer screen...');
+    navigation.navigate('CounterReducer');
+  };
 
   const navigateToColor = () => {
     console.log('Custom button pressed ! : Go to Color screen...');
@@ -37,6 +41,16 @@ const HomeScreen = ({ navigation }) => {
   const navigateToSquare = () => {
     console.log('Custom button pressed ! : Go to Square screen...');
     navigation.navigate('Square');
+  };
+
+  const navigateToSquareReducer = () => {
+    console.log('Custom button pressed ! : Go to Square Reducer screen...');
+    navigation.navigate('SquareReducer');
+  };
+
+  const navigateToText = () => {
+    console.log('Custom button pressed ! : Go to Text screen...');
+    navigation.navigate('Text');
   };
 
   const customButtonsBox = (
@@ -51,9 +65,15 @@ const HomeScreen = ({ navigation }) => {
       {spacingView}
       <CustomButton onPress={navigateToCounter} title="Counter Screen" />
       {spacingView}
+      <CustomButton onPress={navigateToCounterReducer} title="Counter Reducer Screen" />
+      {spacingView}
       <CustomButton onPress={navigateToColor} title="Color Screen" />
       {spacingView}
       <CustomButton onPress={navigateToSquare} title="Square Screen" />
+      {spacingView}
+      <CustomButton onPress={navigateToSquareReducer} title="Square Reducer Screen"/>
+      {spacingView}
+      <CustomButton onPress={navigateToText} title="Text Screen"/>
       {spacingView}
     </View>
   );
