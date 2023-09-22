@@ -10,12 +10,12 @@ const HomeScreen = ({ navigation }) => {
   const spacingView = <View style={styles.spacing}></View>;
 
   const navigateToComponents = () => {
-    console.log('Custom buttom pressed ! : Go to Components screen...');
+    console.log('Custom button pressed ! : Go to Components screen...');
     navigation.navigate('Components');
   };
 
   const navigateToList = () => {
-    console.log('Custom buttom pressed ! : Go to List screen...');
+    console.log('Custom button pressed ! : Go to List screen...');
     navigation.navigate('List');
   };
 
@@ -25,21 +25,36 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const navigateToCounter = () => {
-    console.log('Custom buttom pressed ! : Go to Counter screen...');
+    console.log('Custom button pressed ! : Go to Counter screen...');
     navigation.navigate('Counter');
+  };
+
+  const navigateToColor = () => {
+    console.log('Custom button pressed ! : Go to Color screen...');
+    navigation.navigate('Color');
+  };
+
+  const navigateToSquare = () => {
+    console.log('Custom button pressed ! : Go to Square screen...');
+    navigation.navigate('Square');
   };
 
   const customButtonsBox = (
     <View style={[styles.box, { width: screenWidth * 0.9 }]}>
       <Text style={styles.subtitleStyle}>Custom Button Demo</Text>
       {spacingView}
-      <CustomButton onPress={navigateToCounter} title="Components Screen" />
+      <CustomButton onPress={navigateToComponents} title="Components Screen" />
       {spacingView}
       <CustomButton onPress={navigateToList} title="List Screen" />
       {spacingView}
       <CustomButton onPress={navigateToImage} title="Image Screen" />
       {spacingView}
       <CustomButton onPress={navigateToCounter} title="Counter Screen" />
+      {spacingView}
+      <CustomButton onPress={navigateToColor} title="Color Screen" />
+      {spacingView}
+      <CustomButton onPress={navigateToSquare} title="Square Screen" />
+      {spacingView}
     </View>
   );
 

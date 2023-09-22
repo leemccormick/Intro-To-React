@@ -5,6 +5,8 @@ import ComponentsScreen from "./src/screens/ComponentsScreen";
 import ListScreen from "./src/screens/ListScreen";
 import ImageScreen from "./src/screens/ImageScreen";
 import CounterScreen from "./src/screens/CounterScreen";
+import ColorScreen from "./src/screens/ColorScreen";
+import SquareScreen from "./src/screens/SquareScreen";
 
 const navigator = createStackNavigator(
   {
@@ -13,6 +15,8 @@ const navigator = createStackNavigator(
     List: ListScreen,
     Image: ImageScreen,
     Counter: CounterScreen,
+    Color: ColorScreen,
+    Square: SquareScreen,
   },
   {
     initialRouteName: 'Home',
@@ -28,10 +32,11 @@ export default createAppContainer(navigator);
 /*
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
+import { appStyles, screenWidth, SpacingView, UnderlineView } from '../components/StyleGuide';
 
 const DemoScreen = () => {
     return (
-        <View>
+        <View style={appStyles.paddingStyle}>
             <Text style={styles.textStyle}>A Demo  Screen</Text>
             <Text style={styles.subtitleStyle}>Learning something here...</Text>
         </View>
