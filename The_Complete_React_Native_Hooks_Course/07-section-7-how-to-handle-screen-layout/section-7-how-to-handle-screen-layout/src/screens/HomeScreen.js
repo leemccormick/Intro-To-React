@@ -83,6 +83,21 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate('AlignSelfOnChildren');
   };
 
+  const navigateToThePositionProperty = () => {
+    console.log('Custom button pressed ! : Go to The Position Property screen...');
+    navigation.navigate('ThePositionProperty');
+  };
+
+  const navigateToThePositionTopBottomLeftRightAndAbsoluteFill = () => {
+    console.log('Custom button pressed ! : Go to The Position Top Bottom Left Right and Abosolube Fill Objects screen...');
+    navigation.navigate('TopBottomLeftRightAndAbsoluteFill');
+  };
+
+  const navigateToExerciseSection7Layout = () => {
+    console.log('Custom button pressed ! : Go to Exercis Section7 Layout screen...');
+    navigation.navigate('ExerciseSection7Layout');
+  };
+
   const customButtonsBox = (
     <View style={[styles.box, { width: screenWidth * 0.9 }, { flex: 1, padding: 16 }]}>
       <Text style={styles.subtitleStyle}>Custom Button Demo</Text>
@@ -130,6 +145,12 @@ const HomeScreen = ({ navigation }) => {
       <CustomButton onPress={navigateToFlexOnChildren} title="Flex on Children  Screen" />
       {spacingView}
       <CustomButton onPress={navigateToAlignSelfOnChildren} title="Align Self on Children  Screen" />
+      {spacingView}
+      <CustomButton onPress={navigateToThePositionProperty} title="The Position Property Screen" />
+      {spacingView}
+      <CustomButton onPress={navigateToThePositionTopBottomLeftRightAndAbsoluteFill} title="Top Bottom Left Right Screen" />
+      {spacingView}
+      <CustomButton onPress={navigateToExerciseSection7Layout} title="Layout Exercise Screen" />
       {spacingView}
     </View>
   );

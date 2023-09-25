@@ -26,6 +26,9 @@ import JustifyContentDemoWithRowFlexEndScreen from "./src/screens/justifyContent
 import JustifyContentDemoWithRowFlexStartScreen from "./src/screens/justifyContentScreens/JustifyContentDemoWithRowFlexStartScreen";
 import FlexOnChildrenScreen from "./src/screens/FlexOnChildrenScreen";
 import AlignSelfOnChildrenScreen from "./src/screens/AlignSelfOnChildrenScreen";
+import ThePositionPropertyScreen from "./src/screens/ThePositionPropertyScreen";
+import TopBottomLeftRightAndAbsoluteFillScreen from "./src/screens/TopBottomLeftRightAndAbsoluteFillScreen";
+import ExerciseSection7LayoutScreen from "./src/screens/ExerciseSection7LayoutScreen";
 
 const navigator = createStackNavigator(
   {
@@ -54,7 +57,10 @@ const navigator = createStackNavigator(
     JustifyContentDemoWithRowFlexEnd: JustifyContentDemoWithRowFlexEndScreen,
     JustifyContentDemoWithRowFlexStart: JustifyContentDemoWithRowFlexStartScreen,
     FlexOnChildren: FlexOnChildrenScreen,
-    AlignSelfOnChildren: AlignSelfOnChildrenScreen
+    AlignSelfOnChildren: AlignSelfOnChildrenScreen,
+    ThePositionProperty: ThePositionPropertyScreen,
+    TopBottomLeftRightAndAbsoluteFill: TopBottomLeftRightAndAbsoluteFillScreen,
+    ExerciseSection7Layout: ExerciseSection7LayoutScreen,
   },
   {
     initialRouteName: 'Home',
