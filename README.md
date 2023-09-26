@@ -26,10 +26,10 @@ It is a course from Udemy by Stephen Grider.
 - Learn the core principles of navigation with React Native
 
 ### Basic React Native Component : Section 1 - 7
-<img width="20" hieght="30" alt="Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/e0687c74-f725-4e21-ba9c-ba8e738a64f1">
-<img width="20" hieght="30" alt="Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/0b89eedb-c0a0-4263-91ae-a9dc89c56fcf">
-![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 01 08](https://github.com/leemccormick/Intro-To-React/assets/57606580/52faf55a-e517-4bd9-b576-5ee5a7c73a3d)
-![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 01 18](https://github.com/leemccormick/Intro-To-React/assets/57606580/49f81bcc-d8a6-4c4c-b25a-6b98bc74f6f1)
+<img width="150" hieght="300" alt="Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/e0687c74-f725-4e21-ba9c-ba8e738a64f1">
+<img width="150" hieght="300" alt="Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/0b89eedb-c0a0-4263-91ae-a9dc89c56fcf">
+<img width="150" hieght="300" alt="Demo3" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/52faf55a-e517-4bd9-b576-5ee5a7c73a3d">
+<img width="150" hieght="300" alt="Demo4" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/49f81bcc-d8a6-4c4c-b25a-6b98bc74f6f1">
 
 
 ## Source
