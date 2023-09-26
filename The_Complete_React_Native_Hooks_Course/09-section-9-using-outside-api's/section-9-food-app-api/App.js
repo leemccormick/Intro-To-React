@@ -11,7 +11,7 @@ const navigator = createStackNavigator(
   {
     initialRouteName: 'Search',
     defaultNavigationOptions: {
-      title: 'Business UseEffect Search',
+      title: 'Business api Search',
     },
   }
 );
