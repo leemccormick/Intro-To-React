@@ -19,6 +19,7 @@ const navigator = createStackNavigator(
 export default createAppContainer(navigator);
 
 /* NOTE :
+
 For networking, we can use this 2 method to fetch data from api.
 1) Fetch --> build in funtion in react native. 
 2) axios --> a library, to use this library run this command : npm install axios
