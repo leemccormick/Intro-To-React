@@ -40,9 +40,9 @@ It is a course from Udemy by Stephen Grider.
 - Using Outside API's
 - Making Hooks Reusable
 - Navigation with Parameters
-- 
-<img width="400" hieght="350" alt="Food app Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/7e13b155-c5e8-4d4c-bb64-38629c938d83">
-<img width="400" hieght="350" alt="Food app Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/6b781be2-8e22-49d2-898d-27d81af9076a">
+
+<img width="500" hieght="400" alt="Food app Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/7e13b155-c5e8-4d4c-bb64-38629c938d83">
+<img width="500" hieght="400" alt="Food app Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/6b781be2-8e22-49d2-898d-27d81af9076a">
 <img width="200" hieght="350" alt="Food app iPhone Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/85a96461-ceae-44db-babe-98ae2a279d70">
 <img width="200" hieght="350" alt="Food app iPhone Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/ea6067cf-4760-4e11-89df-4d7bc451c98d">
 <img width="200" hieght="350" alt="Food app android Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/4f75f217-a4ac-4bb5-abd6-c96b684bd88a">
