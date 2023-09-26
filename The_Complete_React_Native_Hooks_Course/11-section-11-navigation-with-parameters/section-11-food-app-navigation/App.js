@@ -2,11 +2,14 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import SearchScreen from './src/screens/SearchScreen';
+import ResultsShowScreen from './src/screens/ResultsShowScreen';
+
 
 // To start the project with navigation library --> Then, run npm install --legacy-peer-deps and then npm start.
 const navigator = createStackNavigator(
   {
     Search: SearchScreen,
+    ResultsShow: ResultsShowScreen,
   },
   {
     initialRouteName: 'Search',
