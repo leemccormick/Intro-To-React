@@ -31,7 +31,6 @@ It is a course from Udemy by Stephen Grider.
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 01 08](https://github.com/leemccormick/Intro-To-React/assets/57606580/52faf55a-e517-4bd9-b576-5ee5a7c73a3d)
 ![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 01 18](https://github.com/leemccormick/Intro-To-React/assets/57606580/49f81bcc-d8a6-4c4c-b25a-6b98bc74f6f1)
 
-
 ## Source
 - [react.dev](https://react.dev/learn)
 - [The complete React Native Hooks Course] (https://www.udemy.com/course/the-complete-react-native-and-redux-course)
