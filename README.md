@@ -40,17 +40,15 @@ It is a course from Udemy by Stephen Grider.
 - Using Outside API's
 - Making Hooks Reusable
 - Navigation with Parameters
-![Screen Shot 2023-09-26 at 3 16 20 PM](https://github.com/leemccormick/Intro-To-React/assets/57606580/7e13b155-c5e8-4d4c-bb64-38629c938d83)
-![Simulator Screen Shot - iPhone 14 Pro - 2023-09-26 at 14 29 08](https://github.com/leemccormick/Intro-To-React/assets/57606580/85a96461-ceae-44db-babe-98ae2a279d70)
-![Simulator Screen Shot - iPhone 14 Pro - 2023-09-26 at 14 29 14](https://github.com/leemccormick/Intro-To-React/assets/57606580/ea6067cf-4760-4e11-89df-4d7bc451c98d)
-![Screen Shot 2023-09-26 at 3 16 05 PM](https://github.com/leemccormick/Intro-To-React/assets/57606580/6b781be2-8e22-49d2-898d-27d81af9076a)
-![Screen Shot 2023-09-26 at 3 21 40 PM](https://github.com/leemccormick/Intro-To-React/assets/57606580/4f75f217-a4ac-4bb5-abd6-c96b684bd88a)
-![Screen Shot 2023-09-26 at 3 21 52 PM](https://github.com/leemccormick/Intro-To-React/assets/57606580/2fa0aa96-cc24-41d5-b1ab-cdf8db6579d1)
-
-
+- 
+<img width="400" hieght="350" alt="Food app Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/7e13b155-c5e8-4d4c-bb64-38629c938d83">
+<img width="400" hieght="350" alt="Food app Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/6b781be2-8e22-49d2-898d-27d81af9076a">
+<img width="200" hieght="350" alt="Food app iPhone Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/85a96461-ceae-44db-babe-98ae2a279d70">
+<img width="200" hieght="350" alt="Food app iPhone Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/ea6067cf-4760-4e11-89df-4d7bc451c98d">
+<img width="200" hieght="350" alt="Food app android Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/4f75f217-a4ac-4bb5-abd6-c96b684bd88a">
+<img width="200" hieght="350" alt="Food app android Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/2fa0aa96-cc24-41d5-b1ab-cdf8db6579d1">
 
 https://github.com/leemccormick/Intro-To-React/assets/57606580/6a91c8ad-054c-4a07-ad89-fd9a3c8c090a
-
 
 ## Source
 - [react.dev](https://react.dev/learn)
