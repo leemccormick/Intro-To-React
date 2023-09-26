@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "food app api",
-    "slug": "food app api",
+    "name": "food app useEffect",
+    "slug": "food app useEffect",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
