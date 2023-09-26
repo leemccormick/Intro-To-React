@@ -14,8 +14,27 @@ It is a React documentation! This web page will give you an introduction to the 
 <img width="1725" alt="Screen Shot 2023-09-20 at 6 30 58 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/957051cb-d54f-420c-bdfe-14f8bbaa15a9">
 <img width="1717" alt="Screen Shot 2023-09-20 at 6 31 16 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/997d69d2-97de-475e-adc0-eb49cef074b6">
 
+## The complete React Native Hooks Course
+It is a course from Udemy by Stephen Grider.
+- Learn how to use React's custom markup language, JSX, to clean up your Javascript code
+- Master the process of breaking down a complex component into many smaller, interchangeable components
+- Grasp the difference between “props" and “state" and when to use each
+- Render interactive, media-rich components in beautifully styled apps
+- Develop apps that are unique, fun, and responsive
+- Build on both Android and iOS platforms
+- Master integration with Firebase for user authentication
+- Learn the core principles of navigation with React Native
+
+### Basic React Native Component : Section 1 - 7
+![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 00 32](https://github.com/leemccormick/Intro-To-React/assets/57606580/e0687c74-f725-4e21-ba9c-ba8e738a64f1)
+![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 00 48](https://github.com/leemccormick/Intro-To-React/assets/57606580/0b89eedb-c0a0-4263-91ae-a9dc89c56fcf)
+![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 01 08](https://github.com/leemccormick/Intro-To-React/assets/57606580/52faf55a-e517-4bd9-b576-5ee5a7c73a3d)
+![Simulator Screen Shot - iPhone 14 Pro - 2023-09-25 at 15 01 18](https://github.com/leemccormick/Intro-To-React/assets/57606580/49f81bcc-d8a6-4c4c-b25a-6b98bc74f6f1)
+
+
 ## Source
 - [react.dev](https://react.dev/learn)
+- [The complete React Native Hooks Course] (https://www.udemy.com/course/the-complete-react-native-and-redux-course)
 
 ## FullStack Project by Lee McCormick
 Learning how to code fuels my passion. I derive immense satisfaction from acquiring new programming languages and employing my expertise to enhance the world we inhabit. This project was built by following the tutorial and source code online.
