@@ -5,16 +5,25 @@ import { Feather } from '@expo/vector-icons';
 
 const IndexScreen = ({ navigation }) => {
     // const blogPosts = useContext(BoxContext); --> This line before using createDataContext.js
-    const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+    const { state, deleteBlogPost } = useContext(Context);
+
+    console.log("----ON IndexScreen----");
+    console.log("navigation is : " + navigation);
     console.log(navigation);
+    console.log("state is : " + state);
+    console.log(state);
+    console.log("deleteBlogPost is : " + deleteBlogPost);
+    console.log(deleteBlogPost);
 
     return (
         <View>
             <Text>Index Screen</Text>
-            <Button
+
+            {/* <Button
                 title='Add Post'
                 onPress={addBlogPost}
-            />
+            /> */}
+
             <FlatList
                 data={state}
                 keyExtractor={blogPost => blogPost.title}

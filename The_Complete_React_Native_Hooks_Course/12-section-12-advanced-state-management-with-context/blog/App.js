@@ -5,11 +5,28 @@ import IndexScreen from './src/screens/IndexScreen';
 import { Provider } from './src/context/BoxContext'; // import { BoxProvider } from './src/context/BoxContext'; --> This line before using createDataContext.js
 import ShowScreen from './src/screens/ShowScreen';
 import CreateScreen from './src/screens/CreateScreen';
+import EditScreen from './src/screens/EditScreen';
 
 const navigator = createStackNavigator({
   Index: IndexScreen,
-  Show: ShowScreen,
-  Create: CreateScreen,
+  Show: {
+    screen: ShowScreen,
+    navigationOptions: {
+      title: 'Blog Details',
+    },
+  },
+  Create: {
+    screen: CreateScreen,
+    navigationOptions: {
+      title: 'Create New Blog',
+    },
+  },
+  Edit: {
+    screen: EditScreen,
+    navigationOptions: {
+      title: 'Edit Blog',
+    },
+  },
 }, {
   initialRouteName: 'Index',
   defaultNavigationOptions: {
