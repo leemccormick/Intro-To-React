@@ -51,6 +51,18 @@ It is a course from Udemy by Stephen Grider.
 
 https://github.com/leemccormick/Intro-To-React/assets/57606580/6a91c8ad-054c-4a07-ad89-fd9a3c8c090a
 
+### Blog App : Section 12 - 13
+- Advanced State Mangament with Context
+- Learn about Context, Provider, useReducer by building Blog app
+- Data API Sync
+- Learn about how to use JSON Server and Ngrok
+  
+<img width="500" hieght="400" alt="Screen Shot 2023-09-27 at 6 03 04 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/fd46e67e-fb51-446d-963b-1e65633cceaf">
+<img width="500" hieght="400" alt="Screen Shot 2023-09-27 at 6 04 24 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/ebfa714b-196f-40cc-82a0-e7037d096355">
+
+<img width="500" hieght="400" alt="Screen Shot 2023-09-27 at 6 04 40 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/595a8d42-c3b5-4236-ab10-062fe8e3d46f">
+<img width="500" hieght="400" alt="Screen Shot 2023-09-27 at 6 02 21 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/b4d62ae2-d4c8-40c4-b5bd-e25984972a22">
+
 ## Source
 - [react.dev](https://react.dev/learn)
 - [The complete React Native Hooks Course] (https://www.udemy.com/course/the-complete-react-native-and-redux-course)
