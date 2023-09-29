@@ -3,14 +3,17 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import AccountScreen from './src/screens/AccountScreen';
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
+import { setNavigator } from './src/navigationRef';
 
 const switchNavigator = createSwitchNavigator({
+  ResolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen
@@ -30,7 +33,7 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <AuthProvider>
-      <App />
+      <App ref={(navigator) => { setNavigator(navigator) }} />
     </AuthProvider>
   );
 }
@@ -120,4 +123,8 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
   - step 1 : make sure the track-server is running on terminal with localhost. --> You will see 'Listening on port 3000' on terminal
   - step 2 : make sure react-native bundler is also runing on the second terminal, basiclly on tracks app is running with npm start
   - step 3 : open the third terminal to run ngrok on tracks-app directory : ngrok http 3000 --> use this command to connect to ngrok and get baseUrl 
+
+5) Async storage --> This is a programming concept used in asynchronous programming paradigms, particularly in JavaScript. It provides a way to store data persistently on a device, like a web browser or a mobile app, without blocking the main execution thread.
+  - To resolve this, we need to install the following library: npm install @react-native-async-storage/async-storage --legacy-peer-deps
+  - Then, update the import in AuthContext to this: import AsyncStorage from '@react-native-async-storage/async-storage';
 */
