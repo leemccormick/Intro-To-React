@@ -10,7 +10,9 @@ import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen from './src/screens/TrackListScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
+import { Provider as LocationProvider } from './src/context/LocationContext';
 import { setNavigator } from './src/navigationRef';
+
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
@@ -18,23 +20,36 @@ const switchNavigator = createSwitchNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen
   }),
-  mainFlow: createMaterialBottomTabNavigator({
-    trackListFlow: createStackNavigator({
-      TrackList: TrackListScreen,
-      TrackDetail: TrackDetailScreen
-    }),
-    TrackCreate: TrackCreateScreen,
-    Account: AccountScreen
-  })
+  mainFlow: createMaterialBottomTabNavigator(
+    {
+      trackListFlow: createStackNavigator({
+        TrackList: TrackListScreen,
+        TrackDetail: TrackDetailScreen
+      }),
+      TrackCreate: TrackCreateScreen,
+      Account: AccountScreen
+    },
+    {
+      initialRouteName: 'TrackCreate', // Set your initial route here if needed
+      barStyle: {
+        backgroundColor: 'darkblue', // Set your desired background color
+        height: 80, // Adjust the height here
+      },
+      labeled: true, // Set to true if you want to display labels on tabs
+      shifting: false, // Set to true if you want the icons to shift when selected
+    }
+  )
 });
 
 const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <AuthProvider>
-      <App ref={(navigator) => { setNavigator(navigator) }} />
-    </AuthProvider>
+    <LocationProvider>
+      <AuthProvider>
+        <App ref={(navigator) => { setNavigator(navigator) }} />
+      </AuthProvider>
+    </LocationProvider>
   );
 }
 
@@ -127,4 +142,12 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 5) Async storage --> This is a programming concept used in asynchronous programming paradigms, particularly in JavaScript. It provides a way to store data persistently on a device, like a web browser or a mobile app, without blocking the main execution thread.
   - To resolve this, we need to install the following library: npm install @react-native-async-storage/async-storage --legacy-peer-deps
   - Then, update the import in AuthContext to this: import AsyncStorage from '@react-native-async-storage/async-storage';
+
+6) React Native Maps --> This is a popular library that allows you to integrate maps into your React Native applications. It provides a convenient way to display interactive and customizable maps on both Android and iOS platforms.
+  - npx expo install react-native-maps -- --legacy-peer-deps | This is a command to install it.
+
+7) expo-location --> This is a module provided by Expo, a popular platform for building and deploying cross-platform mobile applications with JavaScript and React Native. This module offers a set of APIs that allow you to access the device's location services, including GPS and network-based positioning.
+  - npx expo install expo-location-- --legacy-peer-deps | This is a command to install it, but it might get errors back, so use the next command below.
+  - npx expo install expo-location | This is a command to install it, if this not work, please try next command.
+  - npx expo install expo-location -- --force  | This is a command to install it.
 */
