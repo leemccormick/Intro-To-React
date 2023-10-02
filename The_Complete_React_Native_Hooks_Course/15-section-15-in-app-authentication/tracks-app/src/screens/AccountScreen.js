@@ -3,13 +3,13 @@ import { Text, StyleSheet, SafeAreaView } from 'react-native';
 import { Button } from 'react-native-elements'
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
+import { FontAwesome } from '@expo/vector-icons';
 
 const AccountScreen = () => {
     const { signout } = useContext(AuthContext);
-    
+
     console.log('-------------AccountScreen-------------');
-    console.log('AccountScreen | signout is : ' + signout);
-    console.log(signout);
+    console.log('AccountScreen | signout is : ', signout);
 
     return (
         <SafeAreaView forceInset={{ top: 'always' }}>
@@ -19,6 +19,12 @@ const AccountScreen = () => {
             </Spacer>
         </SafeAreaView>
     );
+};
+
+AccountScreen.navigationOptions = {
+    title: 'Account',
+    tabBarIcon: <FontAwesome name="gear" size={20} color="white" />
+
 };
 
 const styles = StyleSheet.create({});

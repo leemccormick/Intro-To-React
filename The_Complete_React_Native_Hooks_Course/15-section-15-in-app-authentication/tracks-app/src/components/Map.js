@@ -4,11 +4,7 @@ import MapView, { Polyline, Circle } from 'react-native-maps';
 import { Context as LocationContext } from '../context/LocationContext';
 
 const Map = () => {
-    const { state: { currentLocation } } = useContext(LocationContext);
-
-    console.log('-------------Map-------------');
-    console.log('Map | currentLocation is : ' + currentLocation);
-    console.log(currentLocation);
+    const { state: { currentLocation, locations } } = useContext(LocationContext);
 
     if (!currentLocation) {
         return <ActivityIndicator size="large" style={{ marginTop: 200 }} />;
@@ -19,6 +15,10 @@ const Map = () => {
         latitude: 37.33233141,
     };
 
+    console.log('-------------Map-------------');
+    console.log('Map | currentLocation is : ', currentLocation);
+    console.log('Map | locations is : ', locations);
+
     return (
         <MapView
             style={styles.map}
@@ -27,21 +27,21 @@ const Map = () => {
                 latitudeDelta: 0.01,
                 longitudeDelta: 0.01
             }}
-        /* We can show region, but it is jumbing so much when we uncomment this..
-        region={{
-            ...currentLocation.coords,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01
-        }}
-        */
+        // We can show region, but it is jumbing so much when we uncomment this..
+        // region={{
+        //     ...currentLocation.coords,
+        //     latitudeDelta: 0.01,
+        //     longitudeDelta: 0.01
+        // }}
         >
-            {/* <Polyline coordinates={points} /> */}
             <Circle
                 center={currentLocation.coords}
                 radius={30}
                 strokeColor='rgba(158, 158, 255, 1.0)'
                 fillColor='rgba(158, 158, 255, 0.3)'
             />
+
+            <Polyline coordinates={locations.map(loc => loc.coords)} />
         </MapView>
     );
 };

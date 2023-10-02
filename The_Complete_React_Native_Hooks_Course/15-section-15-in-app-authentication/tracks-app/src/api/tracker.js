@@ -1,8 +1,27 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default axios.create({
-    baseURL: 'https://447e-24-18-47-114.ngrok-free.app'
+const instance = axios.create({
+  baseURL: 'https://bc59-24-18-47-114.ngrok-free.app'
 });
+
+instance.interceptors.request.use(
+  async (config) => {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Host = 'bc59-24-18-47-114.ngrok-free.app';
+    }
+    return config;
+  },
+  (err) => {
+    console.error('❌❌❌ Error connecting to server : ' + err);
+    console.error(err);
+    return Promise.reject(err);
+  }
+);
+
+export default instance; // We export this intance because we can add authentication method value with this instance
 
 /*
 *** NOTE : How to use track-server with ngrok, follow this steps : 
