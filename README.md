@@ -71,9 +71,9 @@ https://github.com/leemccormick/Intro-To-React/assets/57606580/6a91c8ad-054c-4a0
 - Data API Sync
 - Learn about how to use JSON Server and Ngrok
 
-<img width="400" hieght="400" alt="db app Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/b8ac3230-fd29-4493-abb5-daf548ddee7d">
-<img width="400" hieght="400" alt="db app Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/08182c1e-4307-4c6a-a636-46b85e9a3eae">
-<img width="400" hieght="400" alt="db app Demo3" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/1f113fd4-843e-450d-93f0-b24fd020ea44">
+<img width="600" hieght="400" alt="db app Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/b8ac3230-fd29-4493-abb5-daf548ddee7d">
+<img width="600" hieght="400" alt="db app Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/08182c1e-4307-4c6a-a636-46b85e9a3eae">
+<img width="600" hieght="400" alt="db app Demo3" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/1f113fd4-843e-450d-93f0-b24fd020ea44">
 
 <img width="500" hieght="400" alt="track app Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/40054fda-a9e4-4337-a8d3-7341e2a2c651">
 <img width="500" hieght="400" alt="track app Demo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/6e88b19b-8cf0-4f0d-82c1-29b9c2b1751c">
