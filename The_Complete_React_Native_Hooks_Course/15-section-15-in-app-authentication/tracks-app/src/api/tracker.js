@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const instance = axios.create({
-  baseURL: 'https://bc59-24-18-47-114.ngrok-free.app'
+  baseURL: 'https://5baf-24-18-47-114.ngrok-free.app'
 });
 
 instance.interceptors.request.use(
@@ -10,7 +10,7 @@ instance.interceptors.request.use(
     const token = await AsyncStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      config.headers.Host = 'bc59-24-18-47-114.ngrok-free.app';
+      config.headers.Host = '5baf-24-18-47-114.ngrok-free.app';
     }
     return config;
   },
