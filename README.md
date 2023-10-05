@@ -15,6 +15,9 @@ It is a React documentation! This web page will give you an introduction to the 
 <img width="600" hieght="500" alt="Screen Shot 2023-09-20 at 6 31 16 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/997d69d2-97de-475e-adc0-eb49cef074b6">
 
 ## The complete React Native Hooks Course
+
+<img width="938" alt="Screen Shot 2023-10-03 at 5 59 21 PM" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/73b6a291-a811-478f-bdc0-523787590e70">
+
 It is a course from Udemy by Stephen Grider.
 - Learn how to use React's custom markup language, JSX, to clean up your Javascript code
 - Master the process of breaking down a complex component into many smaller, interchangeable components
