@@ -1,23 +1,37 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
+import { TouchableOpacity, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import LunchScreen from "./src/screens/LunchScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import HomeScreen from "./src/screens/HomeScreen";
-import { Feather } from "@expo/vector-icons";
-import { Provider as AuthProvider } from "./src/contexts/AuthContext";
+import { Provider as AuthProvider, Context as AuthContext } from "./src/contexts/AuthContext";
 import { Provider as StoreProvider } from "./src/contexts/StoreContext";
 import { setNavigator, navigationRef } from "./src/navigationRef";
+import { appStyles } from "./src/components/StyleGuide";
+import { AntDesign } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 
 const App = () => {
+  const { signout } = useContext(AuthContext);
+
   return (
-    <NavigationContainer ref={ref => {
-      setNavigator(ref);
-      navigationRef.current = ref;
-    }}>
+    <NavigationContainer
+      style={appStyles.screenContainer}
+      ref={ref => {
+        setNavigator(ref);
+        navigationRef.current = ref;
+      }}>
+
       <Stack.Navigator screenOptions={{ headerTitle: "My Store" }}>
+        <Stack.Screen
+          name="Lunch"
+          component={LunchScreen}
+          options={{ headerShown: false }}
+        />
+
         <Stack.Screen
           name="Signin"
           component={SigninScreen}
@@ -28,9 +42,14 @@ const App = () => {
           name="Home"
           component={HomeScreen}
           options={({ navigation }) => ({
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => console.log('back not here ??')}>
+                <Fontisto style={[appStyles.leftPaddingStyle, appStyles.secondaryDarkColor]} name="preview" size={24} />
+              </TouchableOpacity>
+            ),
             headerRight: () => (
-              <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
-                <Feather name="plus" size={30} />
+              <TouchableOpacity onPress={signout}>
+                <AntDesign style={[appStyles.rightPaddingStyle, appStyles.secondaryDarkColor]} name="logout" size={24} />
               </TouchableOpacity>
             ),
           })}
