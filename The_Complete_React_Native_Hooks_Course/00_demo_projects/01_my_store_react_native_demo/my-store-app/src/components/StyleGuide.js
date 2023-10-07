@@ -164,6 +164,9 @@ export const appStyles = StyleSheet.create({
         color: '#F1F6F9'
     },
     secondaryLightColor: {
+        color: '#E8F6EF'
+    },
+    secondaryLightBlueColor: {
         color: '#9BA4B5'
     },
     primaryDarkColor: {
@@ -177,6 +180,10 @@ export const appStyles = StyleSheet.create({
         backgroundColor: '#F1F6F9'
     },
     secondaryBackgroundLightColor: {
+        flex: 1,
+        backgroundColor: '#E8F6EF'
+    },
+    secondaryBackgroundLightBlueColor: {
         flex: 1,
         backgroundColor: '#9BA4B5'
     },

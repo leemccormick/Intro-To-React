@@ -5,8 +5,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LunchScreen from "./src/screens/LunchScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import HomeScreen from "./src/screens/HomeScreen";
+import CheckoutScreen from "./src/screens/CheckoutScreen";
 import { Provider as AuthProvider, Context as AuthContext } from "./src/contexts/AuthContext";
 import { Provider as StoreProvider } from "./src/contexts/StoreContext";
+import { Provider as OrderProvider } from "./src/contexts/OrderContext";
 import { setNavigator, navigationRef } from "./src/navigationRef";
 import { appStyles } from "./src/components/StyleGuide";
 import { AntDesign } from '@expo/vector-icons';
@@ -54,6 +56,12 @@ const App = () => {
             ),
           })}
         />
+
+        <Stack.Screen
+          name="Checkout"
+          component={CheckoutScreen}
+          options={{ headerShown: true }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -63,7 +71,9 @@ export default () => {
   return (
     <AuthProvider>
       <StoreProvider>
-        <App />
+        <OrderProvider>
+          <App />
+        </OrderProvider>
       </StoreProvider>
     </AuthProvider>
   );
