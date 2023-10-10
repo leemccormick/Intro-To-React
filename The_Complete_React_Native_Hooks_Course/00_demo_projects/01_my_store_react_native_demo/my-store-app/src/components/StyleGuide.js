@@ -1,5 +1,6 @@
 import { StyleSheet, View, Dimensions, ActivityIndicator } from 'react-native';
 import { Text, Button } from 'react-native-elements'
+import { FontAwesome5 } from '@expo/vector-icons';
 
 export const screenWidth = Dimensions.get('window').width;
 
@@ -63,6 +64,27 @@ export const AppMediumButton = ({ title, onPress }) => {
     );
 };
 
+export const HomeButton = ({ title, onPress }) => {
+    return (
+        <Button
+            icon={
+                <FontAwesome5 style={appStyles.rightPaddingStyle} name="store-alt" size={30} color={appStyles.secondaryDarkColor.color} />
+            }
+            buttonStyle={{
+                backgroundColor: '#9BA4B5',
+            }}
+            containerStyle={{
+                height: 50,
+                justifyContent: 'space-around',
+                textAlign: 'left',
+            }}
+            titleStyle={{ fontWeight: 'normal', fontSize: 20, color: '#212A3E' }}
+            title={title}
+            onPress={onPress}
+        />
+    );
+};
+
 export const appStyles = StyleSheet.create({
     headerStyle: {
         fontSize: 30,
@@ -75,8 +97,19 @@ export const appStyles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#394867'
     },
+    smallTitleStyle: {
+        fontSize: 18,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: '#394867'
+    },
     subtitleStyle: {
         fontSize: 16,
+        textAlign: 'left',
+        color: '#394867'
+    },
+    mediumSubtitleStyle: {
+        fontSize: 18,
         textAlign: 'left',
         color: '#394867'
     },
@@ -108,6 +141,17 @@ export const appStyles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#394867',
         borderRadius: 10,
+    },
+    boxWithShadow: {
+        backgroundColor: '#e6f6ff',
+        borderColor: '#9BA4B5',
+        borderWidth: 0.2,
+        borderRadius: 8,
+        elevation: 5, // Add elevation for shadow on Android
+        shadowColor: '#212A3E', // Shadow color for iOS
+        shadowOffset: { width: 0, height: 2 }, // Shadow offset for iOS
+        shadowOpacity: 0.3, // Shadow opacity for iOS
+        shadowRadius: 2, // Shadow radius for iOS,
     },
     spacing: {
         height: 15,

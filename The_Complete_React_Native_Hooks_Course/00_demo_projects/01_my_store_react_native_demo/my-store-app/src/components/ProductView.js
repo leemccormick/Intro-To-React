@@ -1,29 +1,38 @@
-import React, { useContext, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useContext } from 'react';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { appStyles } from './StyleGuide';
+import { appStyles, SpacingView } from './StyleGuide';
 import { Context as OrderContext } from '../contexts/OrderContext';
 
-//TODO: Continue here...
 const ProductView = ({ product }) => {
     const { postAddItemToCart } = useContext(OrderContext);
 
     console.log('-------------ProductView-------------');
-    return (<View style={styles.container}>
-        <View>
-            <Text h4>{product.name}</Text>
-            <Text h5>{product.description}</Text>
-            <Text h4>${product.price}</Text>
-            <Text h5 style={appStyles.smallestSubtitleStyle}>ID  : {product.id}</Text>
+    console.log('product | ', product);
 
-        </View>
+    return (<View>
+        <SpacingView />
+        <View style={[appStyles.boxWithShadow]}>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => postAddItemToCart(product.id)}>
+                    <MaterialCommunityIcons name="cart-plus" size={30} color="green" />
+                </TouchableOpacity>
+                <SpacingView />
 
-        <View style={styles.buttonsContainer}>
-                     <TouchableOpacity onPress={() => postAddItemToCart(product.id)}>
+                <View style={styles.detailContainer}>
+                    <Text h4 style={appStyles.titleStyle}>{product.name}</Text>
+                    <Text h5 style={appStyles.smallestSubtitleStyle}>{product.description}</Text>
+                </View>
 
-                <MaterialCommunityIcons name="cart-plus" size={30} color="green" />
-            </TouchableOpacity>
+                <Text h4 style={appStyles.titleStyle}>${product.price}</Text>
+            </View>
+
+            <Image
+                style={styles.imageStyle}
+                source={{ uri: 'https://picsum.photos/200/300' }}
+            />
+            <SpacingView />
         </View>
     </View>);
 };
@@ -36,19 +45,23 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop: 10,
         marginHorizontal: 10,
-        backgroundColor: 'lightgray',
-        borderColor: 'gray',  // Border color
-        borderRadius: 8, // Border radius
-        elevation: 5, // Add elevation for shadow on Android
-        shadowColor: '#000', // Shadow color for iOS
-        shadowOffset: { width: 0, height: 2 }, // Shadow offset for iOS
-        shadowOpacity: 0.3, // Shadow opacity for iOS
-        shadowRadius: 2, // Shadow radius for iOS,
+    },
+    detailContainer: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
     },
     buttonsContainer: {
         alignSelf: 'center',
         flexDirection: 'row'
-    }
+    },
+    imageStyle: {
+        width: '90%',
+        aspectRatio: 1,
+        borderRadius: 4,
+        margin: 2,
+        alignSelf: 'center'
+    },
 });
 
 export default ProductView;

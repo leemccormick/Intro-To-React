@@ -6,6 +6,7 @@ import LunchScreen from "./src/screens/LunchScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import CheckoutScreen from "./src/screens/CheckoutScreen";
+import ThankyouScreen from "./src/screens/ThankyouScreen";
 import { Provider as AuthProvider, Context as AuthContext } from "./src/contexts/AuthContext";
 import { Provider as StoreProvider } from "./src/contexts/StoreContext";
 import { Provider as OrderProvider } from "./src/contexts/OrderContext";
@@ -61,6 +62,12 @@ const App = () => {
           name="Checkout"
           component={CheckoutScreen}
           options={{ headerShown: true }}
+        />
+
+        <Stack.Screen
+          name="Thankyou"
+          component={ThankyouScreen}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

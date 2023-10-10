@@ -42,9 +42,10 @@ const HomeScreen = ({ navigation }) => {
         return (<>
             {orderState.showCheckoutAction
                 ? <View style={appStyles.rowCenterContainer}>
-                    <MaterialCommunityIcons name="cart-check" size={24} color={appStyles.secondaryDarkColor.color} />
+                    <MaterialCommunityIcons name="cart-check" size={30} color={appStyles.secondaryDarkColor.color} />
                     <SpacingView />
-                    <Text h5 style={[appStyles.subtitleStyle]}> {orderState.totalItemsInCart} Items in the cart.</Text>
+                    <Text h5 style={[appStyles.subtitleStyle]}>
+                        <Text h5 style={[appStyles.titleStyle]}> {orderState.totalItemsInCart} </Text> Items in the cart.</Text>
                     <SpacingView />
                     <AppMediumButton
                         title="Check out"
@@ -62,11 +63,12 @@ const HomeScreen = ({ navigation }) => {
             {errorMessages ? <ErrorView errorMessage={errorMessages} /> : null}
         </>);
     };
+
     return (<View style={appStyles.screenContainer}>
         <UserInfoSection />
         <EndLineView />
         <CheckOutSection />
-
+        <SpacingView />
         <FlatList
             data={storeState.products}
             keyExtractor={(product) => product.id}
@@ -74,12 +76,10 @@ const HomeScreen = ({ navigation }) => {
                 return (
                     <ProductView
                         product={item}
-                    // onAddToCartPress={postAddItemToCart(item.id)}
                     />
                 );
             }}
         />
-
         <ErrorSection />
     </View>);
 };
@@ -99,93 +99,6 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-
-
-
-/*
-// TODO : Continue on here...., debug why sign out is failed 
-const HomeScreen = ({ navigation }) => {
-    const { state: storeState, showProducts } = useContext(StoreContext);
-    const { state: authState } = useContext(AuthContext);
-
-    console.log('-------------HomeScreen-------------');
-    console.log('storeState | ', storeState);
-    console.log('authState | ', authState);
-    console.log('showProducts | ', showProducts);
-
-    const userFullName = () => {
-        return (authState.currentUserDetails != null) 
-        ? authState.currentUserDetails.user.firstName + ' ' + authState.currentUserDetails.user.lastName
-        : '';
-    };
-
-    useEffect(() => {
-        if (authState.currentUserDetails != null) {
-            showProducts();
-        }
-    }, []); // The empty dependency array means this effect will run once on component mount
-
-    return (<View style={appStyles.screenContainer}>
- 
-        <View style={appStyles.rowFlexEndContainer}>
-            {userFullName ?
-                <Text h5 style={[appStyles.titleStyle]}> HI ! {userFullName}</Text>
-                : null
-            } 
-        </View>
-
-        <View style={appStyles.rowFlexEndContainer}>
-        <Text h5 style={[appStyles.subtitleStyle]}> Roles : {authState.currentUserDetails.roles}</Text>
-
-        </View>
-        <EndLineView />
-
-        <View style={appStyles.rowCenterContainer}>
-            <MaterialCommunityIcons name="cart-check" size={24} color="black" />
-            <SpacingView />
-
-            <Text h5 style={[appStyles.subtitleStyle]}> 5 Items in the cart.</Text>
-            <SpacingView />
-            <AppMediumButton title="Check out" />
-        </View>
-
-        <FlatList
-            data={storeState.products}
-            keyExtractor={(product) => product.id}
-            renderItem={({ item }) => {
-                return (
-                    <ProductView product={item} />
-                );
-            }}
-        />
-    </View>);
-};
-
-HomeScreen.navigationOptions = () => {
-    return {
-        headerShown: false,
-    };
-};
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        marginBottom: 200
-    }
-});
-
-export default HomeScreen;
-
-
-*/
-
-
-
-
-
-
-
 
 /* NOTE: Snipped Code to create new component
 import React, { useContext, useEffect } from 'react';

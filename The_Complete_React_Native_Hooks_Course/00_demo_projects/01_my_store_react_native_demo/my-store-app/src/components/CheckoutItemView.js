@@ -1,38 +1,66 @@
 import React, { useContext, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { appStyles } from './StyleGuide';
+import { appStyles, SpacingView } from './StyleGuide';
 import { Context as OrderContext } from '../contexts/OrderContext';
+import { FontAwesome } from '@expo/vector-icons';
 
-//TODO: Continue here...
-const CheckoutItemView = ({ product }) => {
-    const { postAddItemToCart } = useContext(OrderContext);
+const CheckoutItemView = ({ productItem, showAddButton, showSubtractButton, showDeleteButton }) => {
+    const { updateItemQuantityInTheCart, deleteItemInTheCart } = useContext(OrderContext);
 
     console.log('-------------CheckoutItemView-------------');
-    console.log('product |', product);
+    console.log('productItem |', productItem);
 
-    
-    return (<View style={[styles.container, appStyles.secondaryBackgroundLightColor]}>
-        <View>
-            <Text h4>{product.product.name}</Text>
-            {/* <Text h5>{product.description}</Text> */}
-            <Text h4>${product.product.price}</Text>
+    return (<View style={[styles.container, appStyles.boxWithShadow]}>
+        <Image
+            style={styles.imageStyle}
+            source={{ uri: 'https://picsum.photos/200/300' }}
+        />
 
-            <View style={appStyles.rowCenterContainer}>
-            <Text h5 style={appStyles.smallestSubtitleStyle}>Product ID  : {product.product.id} | </Text>
-            <Text h5 style={appStyles.smallestSubtitleStyle}>order item ID  : {product.id}</Text>
+        <View style={styles.detailContainer}>
+            <Text h4 style={appStyles.smallTitleStyle}>{productItem.product.name}  <Text h5 style={appStyles.subtitleStyle}>${productItem.product.price}</Text> </Text>
+            <Text h5 style={appStyles.smallestSubtitleStyle}>{productItem.product.description}</Text>
+            <Text h5 style={appStyles.smallestSubtitleStyle}>Sub Total : ${productItem.subtotal}</Text>
+
+            {/* TODO: DELETE THIS DETAIL WHEN DONE TESTING  */}
+            {/* <Text h5 style={[appStyles.smallestSubtitleStyle, appStyles.errorColor]}>orderItemId: {productItem.id}</Text>
+            <Text h5 style={[appStyles.smallestSubtitleStyle, appStyles.errorColor]}>OrderId: {productItem.orderId}</Text> */}
+
+            <View style={styles.buttonsContainer}>
+                {showAddButton === true
+                    ? <>
+                        <TouchableOpacity onPress={() => updateItemQuantityInTheCart(productItem.orderId, productItem.id, productItem.quantity + 1)}>
+                            <FontAwesome name="plus-square" size={24} color="green" />
+                        </TouchableOpacity>
+                        <SpacingView />
+                    </>
+                    : null
+                }
+
+                <Text h5 style={appStyles.mediumSubtitleStyle}>Quality : {productItem.quantity}  </Text>
+                <SpacingView />
+
+                {showSubtractButton === true
+                    ? <>
+                        <TouchableOpacity onPress={() => updateItemQuantityInTheCart(productItem.orderId, productItem.id, productItem.quantity - 1)}>
+                            <FontAwesome name="minus-square" size={24} color="green" />
+                        </TouchableOpacity>
+                        <SpacingView />
+                    </>
+                    : null
+                }
             </View>
         </View>
 
-        <View style={styles.buttonsContainer}>
-            {/* <TouchableOpacity onPress={() => console.log('Add to cart !')}> */}
-                     {/* <TouchableOpacity onPress={() => postAddItemToCart(product.id) }>  */}
-                     <TouchableOpacity onPress={() => postAddItemToCart(product.id)}>
-
-                <MaterialCommunityIcons name="cart-plus" size={30} color="green" />
-            </TouchableOpacity>
-        </View>
+        {showDeleteButton === true
+            ? <>
+                <TouchableOpacity onPress={() => deleteItemInTheCart(productItem.orderId, productItem.id)}>
+                    <MaterialCommunityIcons name="delete-forever" size={28} color="red" />
+                </TouchableOpacity>
+            </>
+            : null
+        }
     </View>);
 };
 
@@ -43,20 +71,23 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 5,
         marginTop: 10,
-        // marginHorizontal: 10,
-        // backgroundColor: 'lightgray',
-        borderColor: '#212A3E',  // Border color
-        borderRadius: 8, // Border radius
-        elevation: 5, // Add elevation for shadow on Android
-        shadowColor: '#212A3E', // Shadow color for iOS
-        shadowOffset: { width: 0, height: 2 }, // Shadow offset for iOS
-        shadowOpacity: 0.3, // Shadow opacity for iOS
-        shadowRadius: 2, // Shadow radius for iOS,
+    },
+    detailContainer: {
+        flex: 1,
+        justifyContent: 'space-between',
+        padding: 5,
     },
     buttonsContainer: {
-        alignSelf: 'center',
+        alignSelf: 'stretch',
         flexDirection: 'row'
-    }
+    },
+    imageStyle: {
+        width: 100,
+        height: 100,
+        borderRadius: 4,
+        margin: 2,
+        alignSelf: 'center'
+    },
 });
 
 export default CheckoutItemView;
