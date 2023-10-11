@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -22,10 +22,6 @@ const CheckoutItemView = ({ productItem, showAddButton, showSubtractButton, show
             <Text h4 style={appStyles.smallTitleStyle}>{productItem.product.name}  <Text h5 style={appStyles.subtitleStyle}>${productItem.product.price}</Text> </Text>
             <Text h5 style={appStyles.smallestSubtitleStyle}>{productItem.product.description}</Text>
             <Text h5 style={appStyles.smallestSubtitleStyle}>Sub Total : ${productItem.subtotal}</Text>
-
-            {/* TODO: DELETE THIS DETAIL WHEN DONE TESTING  */}
-            {/* <Text h5 style={[appStyles.smallestSubtitleStyle, appStyles.errorColor]}>orderItemId: {productItem.id}</Text>
-            <Text h5 style={[appStyles.smallestSubtitleStyle, appStyles.errorColor]}>OrderId: {productItem.orderId}</Text> */}
 
             <View style={styles.buttonsContainer}>
                 {showAddButton === true

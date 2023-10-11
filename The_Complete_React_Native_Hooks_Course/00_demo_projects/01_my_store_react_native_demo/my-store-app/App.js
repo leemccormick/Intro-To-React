@@ -7,9 +7,12 @@ import SigninScreen from "./src/screens/SigninScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import CheckoutScreen from "./src/screens/CheckoutScreen";
 import ThankyouScreen from "./src/screens/ThankyouScreen";
+import HistoryScreen from "./src/screens/HistoryScreen";
+import ReviewOrderScreen from "./src/screens/ReviewOrderScreen";
 import { Provider as AuthProvider, Context as AuthContext } from "./src/contexts/AuthContext";
 import { Provider as StoreProvider } from "./src/contexts/StoreContext";
 import { Provider as OrderProvider } from "./src/contexts/OrderContext";
+import { Provider as OrderListProvider } from "./src/contexts/OrderListContext";
 import { setNavigator, navigationRef } from "./src/navigationRef";
 import { appStyles } from "./src/components/StyleGuide";
 import { AntDesign } from '@expo/vector-icons';
@@ -28,7 +31,17 @@ const App = () => {
         navigationRef.current = ref;
       }}>
 
-      <Stack.Navigator screenOptions={{ headerTitle: "My Store" }}>
+      <Stack.Navigator screenOptions={{
+        headerTitle: "MY STORE",
+        headerStyle: {
+          backgroundColor: '#E8F6EF',
+        },
+        headerTintColor: appStyles.primaryDarkColor.color,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 20
+        },
+      }}>
         <Stack.Screen
           name="Lunch"
           component={LunchScreen}
@@ -46,7 +59,7 @@ const App = () => {
           component={HomeScreen}
           options={({ navigation }) => ({
             headerLeft: () => (
-              <TouchableOpacity onPress={() => console.log('back not here ??')}>
+              <TouchableOpacity onPress={() => navigation.navigate("History")}>
                 <Fontisto style={[appStyles.leftPaddingStyle, appStyles.secondaryDarkColor]} name="preview" size={24} />
               </TouchableOpacity>
             ),
@@ -61,13 +74,34 @@ const App = () => {
         <Stack.Screen
           name="Checkout"
           component={CheckoutScreen}
-          options={{ headerShown: true }}
+          options={{
+            headerShown: true,
+            headerTitle: 'Checkout'
+          }}
         />
 
         <Stack.Screen
           name="Thankyou"
           component={ThankyouScreen}
           options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="History"
+          component={HistoryScreen}
+          options={{
+            headerTitle: 'History', 
+            headerShown: true
+          }}
+        />
+
+        <Stack.Screen
+          name="ReviewOrder"
+          component={ReviewOrderScreen}
+          options={{
+            headerShown: true,
+            headerTitle: 'Review Order'
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -79,7 +113,9 @@ export default () => {
     <AuthProvider>
       <StoreProvider>
         <OrderProvider>
-          <App />
+          <OrderListProvider>
+            <App />
+          </OrderListProvider>
         </OrderProvider>
       </StoreProvider>
     </AuthProvider>

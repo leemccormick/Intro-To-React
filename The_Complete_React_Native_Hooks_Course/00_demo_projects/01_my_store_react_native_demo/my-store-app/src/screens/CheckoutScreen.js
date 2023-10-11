@@ -6,6 +6,7 @@ import { appStyles, EndLineView, SpacingView, AppMediumButton, ErrorView, HomeBu
 import useCurrentUser from '../hooks/useCurrentUser';
 import { FontAwesome5 } from '@expo/vector-icons';
 import CheckoutItemView from '../components/CheckoutItemView';
+import { StatusIcon } from '../components/StatusIcon';
 
 const CheckoutScreen = ({ navigation }) => {
     const { state: authState } = useContext(AuthContext);
@@ -38,8 +39,8 @@ const CheckoutScreen = ({ navigation }) => {
 
     const OrderInfoSection = () => {
         return (<>
+            <StatusIcon status={orderState.pendingOrder.status} />
             <Text h5 style={[appStyles.subtitleStyle]}> Order ID : {orderState.pendingOrder.id}</Text>
-            <Text h5 style={[appStyles.subtitleStyle]}> Order Status : {orderState.pendingOrder.status}</Text>
             <Text h5 style={[appStyles.subtitleStyle]}> Customer Name : {fullName}</Text>
         </>);
     };

@@ -204,11 +204,20 @@ export const appStyles = StyleSheet.create({
     errorColor: {
         color: 'red'
     },
+    secondaryErrorColor: {
+        color: '#820000'
+    },
+    successColor: {
+        color: '#A2C579'
+    },
     primaryLightColor: {
         color: '#F1F6F9'
     },
     secondaryLightColor: {
         color: '#E8F6EF'
+    },
+    primaryLightBlueColor: {
+        color: '#64CCC5'
     },
     secondaryLightBlueColor: {
         color: '#9BA4B5'
