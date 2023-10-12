@@ -38,7 +38,7 @@ export const EndLineView = () => {
     );
 };
 
-export const AppButton = ({ title, onPress }) => {
+export const AppButton = ({ title, onPress, disabled }) => {
     return (
         <Button
             buttonStyle={{
@@ -47,11 +47,12 @@ export const AppButton = ({ title, onPress }) => {
             titleStyle={{ fontWeight: 'bold', fontSize: 20, color: 'white' }}
             title={title}
             onPress={onPress}
+            disabled={disabled}
         />
     );
 };
 
-export const AppMediumButton = ({ title, onPress }) => {
+export const AppMediumButton = ({ title, onPress, disabled }) => {
     return (
         <Button
             buttonStyle={{
@@ -60,6 +61,7 @@ export const AppMediumButton = ({ title, onPress }) => {
             titleStyle={{ fontWeight: 'normal', fontSize: 18, color: 'white' }}
             title={title}
             onPress={onPress}
+            disabled={disabled}
         />
     );
 };

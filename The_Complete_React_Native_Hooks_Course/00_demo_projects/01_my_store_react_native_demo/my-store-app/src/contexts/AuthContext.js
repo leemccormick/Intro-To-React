@@ -33,7 +33,12 @@ const authenticate = (dispatch) => async ({ token }) => {
         const data = await response.json();
         await AsyncStorage.setItem('token', token);
         dispatch({ type: 'signin', payload: { token: token, currentUserDetails: data } });
-        navigate('Home');
+
+        if (data.hasSaleRole === true || data.hasAdminRole === true) {
+            navigate('MainBusinessFlow');
+        } else {
+            navigate('Home');
+        }
     } catch (error) {
         console.error('Error fetching data:', error);
         dispatch({ type: 'error', payload: `Something went wrong while authenticate user ! ${error}` });

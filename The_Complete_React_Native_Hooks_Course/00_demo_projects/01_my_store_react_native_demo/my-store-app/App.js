@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LunchScreen from "./src/screens/LunchScreen";
@@ -9,6 +9,8 @@ import CheckoutScreen from "./src/screens/CheckoutScreen";
 import ThankyouScreen from "./src/screens/ThankyouScreen";
 import HistoryScreen from "./src/screens/HistoryScreen";
 import ReviewOrderScreen from "./src/screens/ReviewOrderScreen";
+import MainBusinessFlowBottomTabNavigator from "./src/screens/businessFlowScreens/MainBusinessFlowNavigator";
+import ProductInfoScreen from "./src/screens/businessFlowScreens/ProductInfoScreen";
 import { Provider as AuthProvider, Context as AuthContext } from "./src/contexts/AuthContext";
 import { Provider as StoreProvider } from "./src/contexts/StoreContext";
 import { Provider as OrderProvider } from "./src/contexts/OrderContext";
@@ -90,7 +92,7 @@ const App = () => {
           name="History"
           component={HistoryScreen}
           options={{
-            headerTitle: 'History', 
+            headerTitle: 'History',
             headerShown: true
           }}
         />
@@ -102,6 +104,30 @@ const App = () => {
             headerShown: true,
             headerTitle: 'Review Order'
           }}
+        />
+
+        <Stack.Screen
+          name="MainBusinessFlow"
+          component={MainBusinessFlowBottomTabNavigator}
+          options={({ navigation }) => ({
+            headerTitle: 'MY STORE BUSINESS',
+            headerLeft: () => (
+              <TouchableOpacity onPress={() => navigation.navigate("History")}>
+                <Fontisto style={[appStyles.leftPaddingStyle, appStyles.secondaryDarkColor]} name="preview" size={24} />
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity onPress={signout}>
+                <AntDesign style={[appStyles.rightPaddingStyle, appStyles.secondaryDarkColor]} name="logout" size={24} />
+              </TouchableOpacity>
+            )
+          })}
+        />
+
+        <Stack.Screen
+          name="ProductInfo"
+          component={ProductInfoScreen}
+          options={{ headerShown: true }}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -144,6 +170,7 @@ export default () => {
 - npx expo install react-native-screens react-native-safe-area-context
 - npm install @react-navigation/stack
 - npx expo install react-native-gesture-handler
+- npm install @react-navigation/native @react-navigation/stack @react-navigation/bottom-tabs react-native-safe-area-context react-native-screens
 2) react-native-elements | This is a popular open-source UI toolkit for building mobile applications using React Native. It provides a set of pre-designed and customizable UI components that can be easily integrated into your React Native projects.
   - npm install react-native-elements --force | This is a command that force install library after getting conflic erros.
   - npm install react-native-elements | This is a command to install this library.
