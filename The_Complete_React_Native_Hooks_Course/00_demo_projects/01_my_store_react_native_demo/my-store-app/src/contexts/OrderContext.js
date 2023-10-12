@@ -1,6 +1,7 @@
 import createDataContext from './createDataContext';
 import myStoreApi from '../api/myStoreApi';
 import { navigate } from "../navigationRef";
+import errorHandler from "../utils/errorHandler";
 
 const orderReducer = (state, action) => {
     switch (action.type) {
@@ -21,19 +22,6 @@ const orderReducer = (state, action) => {
     }
 };
 
-const handelEror = (dispatch) => (error, actionDescription) => {
-    let errorMessage;
-    if (error.response) {
-        errorMessage = error.response.data.message;
-    } else if (error.request) {
-        errorMessage = error.request;
-    } else {
-        errorMessage = error.message;
-    }
-    console.error('❌ Error ! ', actionDescription, error, errorMessage);
-    dispatch({ type: 'error', payload: `Something went wrong while ${actionDescription}. ${errorMessage}` });
-};
-
 // http://localhost:8081/api/mystoredemo/orders/pendingOrder
 const fetchPendingOrder = (dispatch) => async () => {
     console.log('-------------📖OrderContext : fetchPendingOrder-------------');
@@ -41,7 +29,7 @@ const fetchPendingOrder = (dispatch) => async () => {
         const response = await myStoreApi.get('/orders/pendingOrder');
         dispatch({ type: 'fetch_pending_order', payload: response.data });
     } catch (error) {
-        handelEror(dispatch)(error, 'fetching pending order from server');
+        errorHandler(dispatch)(error, 'fetching pending order from server');
     }
 };
 
@@ -52,7 +40,7 @@ const postAddItemToCart = (dispatch) => async (productId) => {
         const response = await myStoreApi.post(`/orders/addItemToCart?productId=${productId}`);
         dispatch({ type: 'post_add_item_to_cart', payload: response.data });
     } catch (error) {
-        handelEror(dispatch)(error, 'adding item to cart');
+        errorHandler(dispatch)(error, 'adding item to cart');
     }
 };
 
@@ -63,7 +51,7 @@ const updateItemQuantityInTheCart = (dispatch) => async (orderId, orderItemId, q
         const response = await myStoreApi.post(`/orders/updateItemQuantityInTheCart?orderId=${orderId}&orderItemId=${orderItemId}&quantity=${quantity}`);
         dispatch({ type: 'update_item_quantity_in_cart', payload: response.data })
     } catch (error) {
-        handelEror(dispatch)(error, 'updating item quality in the cart.');
+        errorHandler(dispatch)(error, 'updating item quality in the cart.');
     }
 };
 
@@ -74,7 +62,7 @@ const deleteItemInTheCart = (dispatch) => async (orderId, orderItemId) => {
         const response = await myStoreApi.delete(`/orders/deleteItemInTheCart?orderId=${orderId}&orderItemId=${orderItemId}`);
         dispatch({ type: 'delete_item_in_cart', payload: response.data })
     } catch (error) {
-        handelEror(dispatch)(error, 'deleting item in the cart.');
+        errorHandler(dispatch)(error, 'deleting item in the cart.');
     }
 };
 
@@ -91,10 +79,10 @@ const checkout = (dispatch) => async (order) => {
             dispatch({ type: 'checkout', payload: response.data })
             navigate('Thankyou', { orderId: response.data.order.id, totalAmount: response.data.order.totalAmount });
         } else {
-            handelEror(dispatch)(Error('Failed to check out.'), 'checking out.');
+            errorHandler(dispatch)(Error('Failed to check out.'), 'checking out.');
         }
     } catch (error) {
-        handelEror(dispatch)(error, 'checking out.');
+        errorHandler(dispatch)(error, 'checking out.');
     }
 };
 

@@ -4,9 +4,8 @@ import ProductListScreen from './ProductListScreen';
 import SaleInfoScreen from './SaleInfoScreen';
 import ITInfoScreen from './ITInfoScreen';
 import useCurrentUser from '../../hooks/useCurrentUser';
-import { AntDesign, Ionicons, Octicons } from '@expo/vector-icons'; // Import your custom icons
+import { AntDesign, Ionicons, Octicons } from '@expo/vector-icons'; 
 import { appStyles } from '../../components/StyleGuide';
-import ProductFormScreen from './ProductInfoScreen';
 
 const Tab = createBottomTabNavigator();
 const MainBusinessFlowBottomTabNavigator = () => {

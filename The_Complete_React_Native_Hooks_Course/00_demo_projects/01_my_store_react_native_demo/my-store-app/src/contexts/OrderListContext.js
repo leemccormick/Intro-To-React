@@ -1,5 +1,6 @@
 import createDataContext from './createDataContext';
 import myStoreApi from '../api/myStoreApi';
+import errorHandler from '../utils/errorHandler';
 
 const orderListReducer = (state, action) => {
     switch (action.type) {
@@ -153,19 +154,6 @@ const orderListReducer = (state, action) => {
     }
 };
 
-const handelEror = (dispatch) => (error, actionDescription) => {
-    let errorMessage;
-    if (error.response) {
-        errorMessage = error.response.data.message;
-    } else if (error.request) {
-        errorMessage = error.request;
-    } else {
-        errorMessage = error.message;
-    }
-    console.error('❌ Error ! ', actionDescription, error, errorMessage);
-    dispatch({ type: 'error', payload: `Something went wrong while ${actionDescription}. ${errorMessage}` });
-};
-
 const filterStatusChanged = (dispatch) => async (filterStatus) => {
     try {
         console.log('-------------📖OrderListContext : filterStatusChanged-------------');
@@ -175,7 +163,7 @@ const filterStatusChanged = (dispatch) => async (filterStatus) => {
             fetchMyOrdersWithStatus(dispatch)(filterStatus);
         }
     } catch (error) {
-        handelEror(dispatch)(error, 'selecting filter status.');
+        errorHandler(dispatch)(error, 'selecting filter status.');
     }
 };
 
@@ -193,7 +181,7 @@ const fetchMyOrders = (dispatch) => async () => {
         };
         dispatch({ type: 'fetch_my_orders', payload: payload });
     } catch (error) {
-        handelEror(dispatch)(error, 'fetching my order history from server');
+        errorHandler(dispatch)(error, 'fetching my order history from server');
     }
 };
 
@@ -209,7 +197,7 @@ const fetchMyOrdersWithStatus = (dispatch) => async (status) => {
         }
         dispatch({ type: 'fetch_my_orders_with_status', payload: payload });
     } catch (error) {
-        handelEror(dispatch)(error, 'fetching my orders with status from server');
+        errorHandler(dispatch)(error, 'fetching my orders with status from server');
     }
 };
 

@@ -1,6 +1,7 @@
 import createDataContext from './createDataContext';
 import { navigate } from '../navigationRef';
 import myStoreApi from '../api/myStoreApi';
+import errorHandler from "../utils/errorHandler";
 
 const storeReducer = (state, action) => {
     switch (action.type) {
@@ -11,19 +12,6 @@ const storeReducer = (state, action) => {
         default:
             return state;
     }
-};
-
-const handelEror = (dispatch) => (error, actionDescription) => {
-    let errorMessage;
-    if (error.response) {
-        errorMessage = error.response.data.message;
-    } else if (error.request) {
-        errorMessage = error.request;
-    } else {
-        errorMessage = error.message;
-    }
-    console.error('❌ Error ! ', actionDescription, error, errorMessage);
-    dispatch({ type: 'error', payload: `Something went wrong while ${actionDescription}. ${errorMessage}` });
 };
 
 // http://localhost:8081/api/mystoredemo/products
@@ -37,7 +25,7 @@ const showProducts = (dispatch) => async () => {
         }
         dispatch({ type: 'fetch_products', payload: payload });
     } catch (error) {
-        handelEror(dispatch)(error, 'fetching products from server');
+        errorHandler(dispatch)(error, 'fetching products from server');
     }
 };
 
@@ -58,7 +46,7 @@ const addProduct = (dispatch) => async ({ name, description, price, quantity }) 
             handelEror(dispatch)(Error(`Failed to add product. ${message}`), 'adding new product to store');
         }
     } catch (error) {
-        handelEror(dispatch)(error, 'adding new product to store');
+        errorHandler(dispatch)(error, 'adding new product to store');
     }
 };
 
@@ -101,7 +89,7 @@ const updateProduct = (dispatch) => async ({ product, name, description, price, 
             handelEror(dispatch)(Error(`Failed to update product. ${message}`), 'update product');
         }
     } catch (error) {
-        handelEror(dispatch)(error, 'update product');
+        errorHandler(dispatch)(error, 'update product');
     }
 };
 

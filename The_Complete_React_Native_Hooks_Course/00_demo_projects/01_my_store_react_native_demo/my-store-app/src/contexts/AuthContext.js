@@ -2,6 +2,7 @@ import createDataContext from "./createDataContext";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { encode } from 'base-64';
 import { navigate } from "../navigationRef";
+import errorHandler from "../utils/errorHandler";
 
 const authReducer = (state, action) => {
     switch (action.type) {
@@ -40,8 +41,7 @@ const authenticate = (dispatch) => async ({ token }) => {
             navigate('Home');
         }
     } catch (error) {
-        console.error('Error fetching data:', error);
-        dispatch({ type: 'error', payload: `Something went wrong while authenticate user ! ${error}` });
+        errorHandler(dispatch)(error, 'authenticate user');
     }
 };
 
@@ -66,7 +66,7 @@ const signin = (dispatch) => async ({ username, password }) => {
             throw new Error('Username and Password are required for  sign in!');
         }
     } catch (error) {
-        dispatch({ type: 'error', payload: `Something went wrong with sign in! ${error}` });
+        errorHandler(dispatch)(error, 'sign in');
     }
 };
 
@@ -77,7 +77,7 @@ const signout = (dispatch) => async () => {
         dispatch({ type: 'signout' });
         navigate('Signin');
     } catch {
-        dispatch({ type: 'error', payload: 'Something went wrong with sign out!' });
+        errorHandler(dispatch)(error, 'sign out');
     }
 };
 
