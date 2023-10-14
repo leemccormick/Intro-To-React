@@ -11,3 +11,9 @@ export const navigate = (routeName, params) => {
         navigationRef.current.navigate(routeName, params);
     }
 };
+
+export const navigateToReviewScreen = ({ order }) => {
+    if (navigationRef.current) {
+        navigationRef.current.navigate('ReviewOrder', { order: { order }, businnessFlow: true });
+    }
+};

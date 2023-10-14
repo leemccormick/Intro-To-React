@@ -1,6 +1,7 @@
 import { StyleSheet, View, Dimensions, ActivityIndicator } from 'react-native';
 import { Text, Button } from 'react-native-elements'
 import { FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 
 export const screenWidth = Dimensions.get('window').width;
 
@@ -20,10 +21,27 @@ export const UnderlineView = () => {
     );
 };
 
+export const EmptyStateView = ({ message }) => {
+    return (
+        <View style={[appStyles.box, { borderColor: appStyles.secondaryDarkColor.color }]}>
+            <View style={appStyles.rowCenterContainer}>
+                <AntDesign style={appStyles.paddingStyle} name="warning" size={24} color={appStyles.secondaryDarkColor.color} />
+                {message
+                    ? <Text style={[appStyles.subtitleStyle, appStyles.secondaryDarkColor.color]} >{message} </Text>
+                    : <Text style={[appStyles.subtitleStyle, appStyles.secondaryDarkColor.color]} >Not Found </Text>
+                }
+            </View>
+        </View>
+    );
+};
+
 export const ErrorView = ({ errorMessage }) => {
     return (
-        <View style={[appStyles.box, { borderColor: 'red' }]}>
-            <Text style={[appStyles.subtitleStyle, appStyles.errorColor]} >❌ Error : {errorMessage} </Text>
+        <View style={[appStyles.box, { borderColor: appStyles.secondaryErrorColor.color }]}>
+            <View style={appStyles.rowCenterContainer}>
+                <MaterialIcons style={appStyles.paddingStyle} name="error-outline" size={24} color={appStyles.secondaryErrorColor.color} />
+                <Text style={[appStyles.subtitleStyle, appStyles.errorColor]} >Error : {errorMessage} </Text>
+            </View>
         </View>
     );
 };
@@ -101,6 +119,12 @@ export const appStyles = StyleSheet.create({
     },
     smallTitleStyle: {
         fontSize: 18,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        color: '#394867'
+    },
+    smallestTitleStyle: {
+        fontSize: 16,
         textAlign: 'left',
         fontWeight: 'bold',
         color: '#394867'
@@ -198,6 +222,11 @@ export const appStyles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'stretch'
     },
+    rowFlexStartContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'stretch'
+    },
     rowCenterContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -250,4 +279,15 @@ export const appStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#394867'
     },
+    cornerRadius: {
+        borderRadius: 8
+    },
+    leftCornerRadius: {
+        borderTopLeftRadius: 8,
+        borderBottomLeftRadius: 8,
+    },
+    rightCornerRadius: {
+        borderTopRightRadius: 8,
+        borderBottomRightRadius: 8,
+    }
 });

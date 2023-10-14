@@ -17,8 +17,7 @@ import { Provider as OrderProvider } from "./src/contexts/OrderContext";
 import { Provider as OrderListProvider } from "./src/contexts/OrderListContext";
 import { setNavigator, navigationRef } from "./src/navigationRef";
 import { appStyles } from "./src/components/StyleGuide";
-import { AntDesign } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
+import { AntDesign, Fontisto, Entypo } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
 
@@ -92,7 +91,7 @@ const App = () => {
           name="History"
           component={HistoryScreen}
           options={{
-            headerTitle: 'History',
+            // headerTitle: 'History',
             headerShown: true
           }}
         />
@@ -113,7 +112,7 @@ const App = () => {
             headerTitle: 'MY STORE BUSINESS',
             headerLeft: () => (
               <TouchableOpacity onPress={() => navigation.navigate("History")}>
-                <Fontisto style={[appStyles.leftPaddingStyle, appStyles.secondaryDarkColor]} name="preview" size={24} />
+                <Entypo style={[appStyles.leftPaddingStyle, appStyles.secondaryDarkColor]} name="list" size={24} />
               </TouchableOpacity>
             ),
             headerRight: () => (

@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { Text } from 'react-native-elements';
 import OrderItemView from '../components/OrderItemView';
-import { appStyles, EndLineView, ErrorView } from '../components/StyleGuide';
+import OrderItemBusinessModeView from '../components/OrderItemBusinessModeView';
+import { appStyles, EndLineView, ErrorView, EmptyStateView } from '../components/StyleGuide';
 import { Context as AuthContext } from '../contexts/AuthContext';
 import { Context as OrderContext } from '../contexts/OrderContext';
 import { Context as OrderListContext } from '../contexts/OrderListContext';
@@ -14,20 +15,36 @@ const HistoryScreen = ({ navigation }) => {
     const { state: authState } = useContext(AuthContext);
     const { state: orderState } = useContext(OrderContext);
     const { state: orderListState, filterStatusChanged } = useContext(OrderListContext);
-    const [fullName, rolesDescription] = useCurrentUser();
+    const [fullName, rolesDescription, hasCustomerRole, hasSaleRole, hasAdminRole] = useCurrentUser();
+    const [businessMode, setBusinessMode] = useState(false);
 
     console.log('-------------HistoryScreen-------------');
     console.log('authState | ', authState);
     console.log('orderState | ', orderState);
     console.log('orderListState | ', orderListState);
+    console.log('hasCustomerRole | ', hasCustomerRole);
+    console.log('hasSaleRole | ', hasSaleRole);
+    console.log('hasAdminRole | ', hasAdminRole);
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
-            filterStatusChanged('All');
+            filterStatusChanged('All', businessMode);
         });
 
         return unsubscribe;
     }, [navigation]);
+
+    useEffect(() => {
+        if (hasSaleRole === true || hasAdminRole === true) {
+            navigation.setOptions({ headerTitle: 'Orders History' });
+            setBusinessMode(true);
+            filterStatusChanged('All', true);
+        } else {
+            navigation.setOptions({ headerTitle: 'My Orders' });
+            setBusinessMode(false);
+            filterStatusChanged('All', false);
+        }
+    }, [navigation, hasAdminRole, hasSaleRole]);
 
     const OrderInfoSection = () => {
         return (<>
@@ -41,53 +58,80 @@ const HistoryScreen = ({ navigation }) => {
     const TabFilterSection = () => {
         return (<View style={styles.tabContainer}>
             <AllStatusIcon
-                onPress={() => filterStatusChanged('All')}
+                onPress={() => filterStatusChanged('All', businessMode)}
                 isSelected={orderListState.selectedFilterStatus === 'All'}
             />
             <PendingStatusIcon
-                onPress={() => filterStatusChanged('Pending')}
+                onPress={() => filterStatusChanged('Pending', businessMode)}
                 isSelected={orderListState.selectedFilterStatus === 'Pending'}
             />
             <ProcessingStatusIcon
-                onPress={() => filterStatusChanged('Processing')}
+                onPress={() => filterStatusChanged('Processing', businessMode)}
                 isSelected={orderListState.selectedFilterStatus === 'Processing'}
             />
             <ShippedStatusIcon
-                onPress={() => filterStatusChanged('Shipped')}
+                onPress={() => filterStatusChanged('Shipped', businessMode)}
                 isSelected={orderListState.selectedFilterStatus === 'Shipped'}
             />
             <DeliveredStatusIcon
-                onPress={() => filterStatusChanged('Delivered')}
+                onPress={() => filterStatusChanged('Delivered', businessMode)}
                 isSelected={orderListState.selectedFilterStatus === 'Delivered'}
             />
             <CancelledStatusIcon
-                onPress={() => filterStatusChanged('Cancelled')}
+                onPress={() => filterStatusChanged('Cancelled', businessMode)}
                 isSelected={orderListState.selectedFilterStatus === 'Cancelled'}
             />
         </View>);
     };
 
     const OrderListSection = () => {
-        return (<>
-            <FlatList
-                data={orderListState.orderListToDisplay}
-                keyExtractor={(order) => order.id}
-                renderItem={({ item }) => {
-                    return (
-                        <TouchableOpacity
-                            onPress={() => {
-                                if (authState.currentUserDetails.user.id === item.customer.id && item.status === 'Pending' && item.id === orderState.pendingOrder.id) {
-                                    navigation.navigate('Checkout')
-                                } else {
-                                    navigation.navigate('ReviewOrder', { order: { item } })
-                                }
-                            }}>
-                            <OrderItemView order={item} />
-                        </TouchableOpacity>
-                    );
-                }}
-            />
-        </>);
+        return (
+            <>
+                {(orderListState.orderListToDisplay && orderListState.orderListToDisplay.length === 0)
+                    ? <EmptyStateView message={`No ${orderListState.selectedFilterStatus} Orders Found.`} />
+                    : <OrdersTable />
+                }
+            </>);
+    };
+
+    const OrdersTable = () => {
+        return (
+            <>
+                {(businessMode)
+                    ? <FlatList
+                        data={orderListState.orderListToDisplay}
+                        keyExtractor={(order) => order.id}
+                        renderItem={({ item }) => {
+                            return (
+                                <OrderItemBusinessModeView
+                                    order={item}
+                                    hasSaleRole={hasSaleRole}
+                                    hasAdminRole={hasAdminRole}
+                                />
+                            );
+                        }}
+                    />
+                    : <FlatList
+                        data={orderListState.orderListToDisplay}
+                        keyExtractor={(order) => order.id}
+                        renderItem={({ item }) => {
+                            return (
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        if (authState.currentUserDetails.user.id === item.customer.id && item.status === 'Pending' && item.id === orderState.pendingOrder.id) {
+                                            navigation.navigate('Checkout')
+                                        } else {
+                                            navigation.navigate('ReviewOrder', { order: { item } })
+                                        }
+                                    }}>
+                                    <OrderItemView order={item} />
+                                </TouchableOpacity>
+                            );
+                        }}
+                    />
+                }
+            </>
+        );
     };
 
     const ErrorSection = () => {

@@ -15,8 +15,9 @@ const OrderItemView = ({ order }) => {
             <Text h5 style={appStyles.smallestSubtitleStyle}>Order ID : {order.id} </Text>
             <Text h5 style={appStyles.smallestSubtitleStyle}>Amount : ${order.totalAmount} </Text>
         </View>
-
-        <MaterialIcons style={appStyles.centerContainer} name="navigate-next" size={30} color={appStyles.secondaryDarkColor.color} />
+        <View style={styles.center}>
+            <MaterialIcons style={styles.center} name="navigate-next" size={30} color={appStyles.secondaryDarkColor.color} />
+        </View>
     </View>);
 };
 
@@ -32,6 +33,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
         padding: 5,
+    },
+    center: {
+        alignItems: 'center',
+        justifyContent: 'space-evenly'
     }
 });
 
