@@ -117,6 +117,13 @@ export const appStyles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#394867'
     },
+    titleStyleAlignCenter: {
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: '#394867',
+        alignSelf: 'stretch'
+    },
     smallTitleStyle: {
         fontSize: 18,
         textAlign: 'left',
@@ -201,6 +208,12 @@ export const appStyles = StyleSheet.create({
     },
     rightPaddingStyle: {
         paddingRight: 15
+    },
+    bottomPaddingStyle: {
+        paddingBottom: 15
+    },
+    topPaddingStyle: {
+        paddingTop: 15
     },
     paddingStyle: {
         paddingVertical: 15,

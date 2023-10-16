@@ -7,6 +7,8 @@ const storeReducer = (state, action) => {
     switch (action.type) {
         case 'fetch_products':
             return { ...state, errorMessage: '', products: action.payload.data, totalProducts: action.payload.totalProducts };
+        case 'fetch_sale_info':
+            return { ...state, errorMessage: '', saleInfo: action.payload };
         case 'error':
             return { ...state, errorMessage: action.payload };
         default:
@@ -93,8 +95,22 @@ const updateProduct = (dispatch) => async ({ product, name, description, price, 
     }
 };
 
+// http://localhost:8081/api/mystoredemo/info
+const fetchSaleInfo = (dispatch) => async () => {
+    console.log('-------------📖StoreContext : fetchSaleInfo-------------');
+    try {
+        const response = await myStoreApi.get('/info');
+        dispatch({ type: 'fetch_sale_info', payload: response.data });
+    } catch (error) {
+        errorHandler(dispatch)(error, 'fetching sale info from server');
+    }
+};
+
+// http://localhost:8081/api/mystoredemo/users
+// http://localhost:8081/api/mystoredemo/users
+
 export const { Provider, Context } = createDataContext(
     storeReducer,
-    { showProducts, addProduct, updateProduct },
-    { products: [], totalProducts: 0, errorMessage: '' }
+    { showProducts, addProduct, updateProduct, fetchSaleInfo },
+    { products: [], totalProducts: 0, errorMessage: '', saleInfo: null }
 );
