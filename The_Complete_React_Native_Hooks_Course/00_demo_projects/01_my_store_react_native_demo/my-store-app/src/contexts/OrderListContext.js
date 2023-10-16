@@ -1,9 +1,7 @@
 import createDataContext from './createDataContext';
 import myStoreApi from '../api/myStoreApi';
 import errorHandler from '../utils/errorHandler';
-import useCurrentUser from '../hooks/useCurrentUser';
 
-// TODO: Work on update function to update new list here....
 const orderListReducer = (state, action) => {
     switch (action.type) {
         case 'fetch_my_orders':
@@ -163,6 +161,7 @@ const orderListReducer = (state, action) => {
             switch (action.payload.selectedFilterStatus) {
                 case 'Pending':
                     return {
+                        ...state,
                         errorMessage: '',
                         selectedFilterStatus: action.payload.selectedFilterStatus,
                         totalOrderDescriptionToDisplay: 'Total Pending Orders',
@@ -173,6 +172,7 @@ const orderListReducer = (state, action) => {
                     };
                 case 'Processing':
                     return {
+                        ...state,
                         errorMessage: '',
                         selectedFilterStatus: action.payload.selectedFilterStatus,
                         totalOrderDescriptionToDisplay: 'Total Processing Orders',
@@ -183,6 +183,7 @@ const orderListReducer = (state, action) => {
                     };
                 case 'Shipped':
                     return {
+                        ...state,
                         errorMessage: '',
                         selectedFilterStatus: action.payload.selectedFilterStatus,
                         totalOrderDescriptionToDisplay: 'Total Shipped Orders',
@@ -193,6 +194,7 @@ const orderListReducer = (state, action) => {
                     };
                 case 'Delivered':
                     return {
+                        ...state,
                         errorMessage: '',
                         selectedFilterStatus: action.payload.selectedFilterStatus,
                         totalOrderDescriptionToDisplay: 'Total Delivered Orders',
@@ -203,6 +205,7 @@ const orderListReducer = (state, action) => {
                     };
                 case 'Cancelled':
                     return {
+                        ...state,
                         errorMessage: '',
                         selectedFilterStatus: action.payload.selectedFilterStatus,
                         totalOrderDescriptionToDisplay: 'Total Cancelled Orders',
@@ -214,77 +217,53 @@ const orderListReducer = (state, action) => {
                 default:
                     return state;
             }
-
-        // TODO: Work on update screen here.....
         case 'update_order_status':
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  reducer payload', action.payload);
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  reducer payload', action.payload.statusToUpdate);
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  reducer payload', action.payload.orderToUpdate);
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  reducer payload', action.payload.orderToUpdate.status);
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  reducer payload', action.payload.orderToUpdate.id);
-
-
-
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  TODO: UPDATE STATE HERE......., make sure to find the order in all list and original order list by orderToUpdate.status --> delete own data and insert new data on those 2 list.');
-
-            // statusToUpdate: status,
-            // orderToUpdate: order
-            switch (action.payload.orderToUpdate.status) {
+            switch (action.payload.order.status) {
                 case 'Processing':
-                    switch (action.payload.statusToUpdate) {
-                        // case 'Processing':
-                        //     return state;
-                        case 'Shipped':
-                            return {
-                                ...state,
-                                totalOrdersToDisplay: 0,
-                                orderListToDisplay: [],
-                                allOrders: state.allOrders.filter(order => order.id !== orderToUpdate.id),
-                                totalAllOrders: 0,
-                                allShippedOrders: state.allOrders.filter(order => order.id !== orderToUpdate.id),
-                                totalAllShippedOrders: 0,
-                                locations: [...state.locations, action.payload]
-                            };
-                        case 'Delivered':
-                            return state;
-                        case 'Cancelled':
-                            return state;
-                        default:
-                            return state;
-                    }
-                case 'Shipped':
+                    const filteredProcessingOrders = state.allProcessingOrders.filter(order => order.id !== action.payload.order.id);
                     return {
                         ...state,
-                        totalOrdersToDisplay: 0,
-                        orderListToDisplay: [],
-                        allOrders: [],
-                        totalAllOrders: 0,
-                        locations: [...state.locations, action.payload]
+                        totalOrdersToDisplay: filteredProcessingOrders.length,
+                        orderListToDisplay: filteredProcessingOrders,
+                        allProcessingOrders: filteredProcessingOrders,
+                        totalAllProcessingOrders: filteredProcessingOrders.length,
+                    };
+                case 'Shipped':
+                    const filteredShippedOrders = state.allShippedOrders.filter(order => order.id !== action.payload.order.id);
+                    return {
+                        ...state,
+                        totalOrdersToDisplay: filteredShippedOrders.length,
+                        orderListToDisplay: filteredShippedOrders,
+                        allShippedOrders: filteredShippedOrders,
+                        totalAllShippedOrders: filteredShippedOrders.length,
                     };
                 case 'Delivered':
+                    const filteredDeliveredOrders = state.allDeliveredOrders.filter(order => order.id !== action.payload.order.id);
                     return {
                         ...state,
-                        totalOrdersToDisplay: 0,
-                        orderListToDisplay: [],
-                        allOrders: [],
-                        totalAllOrders: 0,
-                        locations: [...state.locations, action.payload]
+                        totalOrdersToDisplay: filteredDeliveredOrders.length,
+                        orderListToDisplay: filteredDeliveredOrders,
+                        allDeliveredOrders: filteredDeliveredOrders,
+                        totalAllDeliveredOrders: filteredDeliveredOrders.length,
                     };
                 case 'Cancelled':
+                    const filteredCancelledOrders = state.allCancelledOrders.filter(order => order.id !== action.payload.order.id);
                     return {
                         ...state,
-                        totalOrdersToDisplay: 0,
-                        orderListToDisplay: [],
-                        allOrders: [],
-                        totalAllOrders: 0,
-                        locations: [...state.locations, action.payload]
+                        totalOrdersToDisplay: filteredCancelledOrders.length,
+                        orderListToDisplay: filteredCancelledOrders,
+                        allCancelledOrders: filteredCancelledOrders,
+                        totalAllCancelledOrders: filteredCancelledOrders.length,
                     };
                 default:
                     return state;
             }
-
-
-
+        case 'update_order':
+            return {
+                ...state,
+                errorMessage: '',
+                updatedOrder: action.payload
+            };
         case 'error':
             return { ...state, errorMessage: action.payload };
         default:
@@ -292,19 +271,8 @@ const orderListReducer = (state, action) => {
     }
 };
 
-// const [fullName, rolesDescription, hasCustomerRole, hasSaleRole, hasAdminRole] = useCurrentUser();
-
 const filterStatusChanged = (dispatch) => async (filterStatus, businessMode) => {
     try {
-        console.log('-------------📖OrderListContext : filterStatusChanged-------------');
-
-        console.log('📖📖📖📖📖📖📖📖businessMode, ', businessMode === true);
-        console.log('📖📖📖📖📖📖📖📖businessMode, ', businessMode);
-        console.log('📖📖📖📖📖📖📖📖 bfilterStatus, ', filterStatus);
-
-        // console.log('📖📖📖📖📖📖📖📖 hasAdminRole, ', hasAdminRole);
-        // console.log('📖📖📖📖📖📖📖📖 hasSaleRole, ', hasSaleRole);
-
         if (filterStatus === 'All' || filterStatus === '') {
             if (businessMode) {
                 fetchAllOrders(dispatch)();
@@ -312,16 +280,8 @@ const filterStatusChanged = (dispatch) => async (filterStatus, businessMode) => 
                 fetchMyOrders(dispatch)();
             }
         } else {
-            console.log('📖📖📖📖📖📖📖📖businessMode, 📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode', businessMode);
-
             if (businessMode) {
-                //fetchAllOrdersWithStatus(dispatch)(filterStatus);
-
-                console.log('248📖📖📖📖📖📖📖📖businessMode, 📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode', businessMode);
-
                 fetchAllOrdersWithStatus(dispatch)(filterStatus);
-
-
             } else {
                 fetchMyOrdersWithStatus(dispatch)(filterStatus);
             }
@@ -401,31 +361,17 @@ const fetchAllOrdersWithStatus = (dispatch) => async (status) => {
     }
 };
 
-// TODO: Work on update screen here.....
 // http://localhost:8081/api/mystoredemo/orders/updateOrderStatusToProcessing?orderId=0000
 // http://localhost:8081/api/mystoredemo/orders/updateOrderStatusToShipped?orderId=29
 // http://localhost:8081/api/mystoredemo/orders/updateOrderStatusToDelivered?orderId=54
 // http://localhost:8081/api/mystoredemo/orders/updateOrderStatusToCancelled?orderId=58
-const updateOrderWithStatus = (dispatch) => async (status, order) => {
+const updateOrderWithStatus = (dispatch) => async (status, order, inReviewMode = false) => {
     console.log('-------------📖OrderListContext : updateOrderWithStatus-------------');
     try {
-
         const { orderId } = order.id;
-
-        console.log(' 📖📖📖📖📖📖📖📖 status', status);
-        console.log(' 📖📖📖📖📖📖📖📖 order', order);
-        console.log(' 📖📖📖📖📖📖📖📖 order.id', order.id);
-
-        console.log(' 📖📖📖📖📖📖📖📖 orderId', orderId);
-
-
         let updateOrderUrl;
-
-
         switch (status) {
             case 'Processing':
-                console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 status status status', { status });
-
                 updateOrderUrl = `/orders/updateOrderStatusToProcessing?orderId=${order.id}`;
                 break;
             case 'Shipped':
@@ -435,58 +381,33 @@ const updateOrderWithStatus = (dispatch) => async (status, order) => {
             case 'Delivered':
                 updateOrderUrl = `/orders/updateOrderStatusToDelivered?orderId=${order.id}`;
                 break;
-
             case 'Cancelled':
                 updateOrderUrl = `/orders/updateOrderStatusToCancelled?orderId=${order.id}`;
                 break;
-
             default:
                 break;
         }
 
         if (updateOrderUrl) {
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 updateOrderUrl', { updateOrderUrl });
             const response = await myStoreApi.put(updateOrderUrl);
-
-
-
-
-            console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅ response.data', response.data);
-
-
             if (response.data.status === 'success' && response.data.code === 200) {
-                console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  385response.data', response.data.status === 'success');
-
-                const payload = {
-                    statusToUpdate: status,
-                    orderToUpdate: order
+                if (!inReviewMode) {
+                    const payload = {
+                        newStatus: status,
+                        order: order
+                    }
+                    dispatch({ type: 'update_order_status', payload: payload });
+                } else {
+                    const updatedOrder = { ...order, status: status };
+                    dispatch({ type: 'update_order', payload: updatedOrder });
                 }
-
-                console.log(' 📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 ✅✅✅✅✅  payload', payload);
-
-                // fetchAllOrders(dispatch)();
-                // fetchAllOrdersWithStatus(dispatch)(statusToUpdate);
-                // fetchAllOrdersWithStatus(dispatch)(order.status);
-                // filterStatusChanged('All', );
-                // filterStatusChanged(dispatch)('All', true);
-
-                await fetchAllOrders(dispatch)();
-                await fetchAllOrdersWithStatus(dispatch)(statusToUpdate);
-                await fetchAllOrdersWithStatus(dispatch)(order.status);
-
-                //    dispatch({ type: 'update_order_status', payload: payload });
 
             } else {
                 throw new Error(`Something went wrong, ${response.data.message}`);
             }
         } else {
-            console.log(' ❌❌❌❌❌📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖📖 updateOrderUrl', { updateOrderUrl });
             throw new Error('Request is invalid, please try again.');
         }
-
-        // const response = await myStoreApi.put(`/orders/all?status=${status}`);
-        //   const response = await myStoreApi.put(`/orders/updateOrderStatusToProcessing?orderId=${orderId}`);
-
     } catch (error) {
         errorHandler(dispatch)(error, 'updating order status');
     }
@@ -524,6 +445,7 @@ export const { Provider, Context } = createDataContext(
         allDeliveredOrders: [],
         totalAllDeliveredOrders: 0,
         allCancelledOrders: [],
-        totalAllCancelledOrders: 0
+        totalAllCancelledOrders: 0,
+        updatedOrder: null
     }
 );
