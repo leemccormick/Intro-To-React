@@ -9,10 +9,26 @@ const storeReducer = (state, action) => {
             return { ...state, errorMessage: '', products: action.payload.data, totalProducts: action.payload.totalProducts };
         case 'fetch_sale_info':
             return { ...state, errorMessage: '', saleInfo: action.payload };
+        case 'fetch_users':
+            return { ...state, errorMessage: '', users: action.payload, usersFiltersByRole: action.payload, selectedFilterUserRole: 'All' };
+        case 'fetch_users_by_role':
+            return { ...state, errorMessage: '', users: action.payload.users, usersFiltersByRole: action.payload.usersFiltersByRole, selectedFilterUserRole: action.payload.selectedFilterUserRole };
         case 'error':
             return { ...state, errorMessage: action.payload };
         default:
             return state;
+    }
+};
+
+const filterRoleChanged = (dispatch) => async (filterRole) => {
+    try {
+        if (filterRole === 'All' || filterRole === '') {
+            fetchUsers(dispatch)();
+        } else {
+            fetchUsersByRole(dispatch)(filterRole);
+        }
+    } catch (error) {
+        errorHandler(dispatch)(error, 'selecting filter role.');
     }
 };
 
@@ -107,10 +123,35 @@ const fetchSaleInfo = (dispatch) => async () => {
 };
 
 // http://localhost:8081/api/mystoredemo/users
+const fetchUsers = (dispatch) => async () => {
+    console.log('-------------📖StoreContext : fetchUsers-------------');
+    try {
+        const response = await myStoreApi.get('/users');
+        dispatch({ type: 'fetch_users', payload: response.data });
+    } catch (error) {
+        errorHandler(dispatch)(error, 'fetching users from server');
+    }
+};
+
 // http://localhost:8081/api/mystoredemo/users
+const fetchUsersByRole = (dispatch) => async (filterRole) => {
+    console.log('-------------📖StoreContext : fetchUsersByRole-------------');
+    try {
+        const response = await myStoreApi.get('/users');
+        const usersFiltersByRole = response.data.filter(user => user.roles.toLowerCase().includes(filterRole.toLowerCase()));
+        const payload = {
+            selectedFilterUserRole: filterRole,
+            users: response.data,
+            usersFiltersByRole: usersFiltersByRole
+        }
+        dispatch({ type: 'fetch_users_by_role', payload: payload });
+    } catch (error) {
+        errorHandler(dispatch)(error, 'fetching users with role from server');
+    }
+};
 
 export const { Provider, Context } = createDataContext(
     storeReducer,
-    { showProducts, addProduct, updateProduct, fetchSaleInfo },
-    { products: [], totalProducts: 0, errorMessage: '', saleInfo: null }
+    { showProducts, addProduct, updateProduct, fetchSaleInfo, fetchUsers, filterRoleChanged },
+    { products: [], totalProducts: 0, errorMessage: '', saleInfo: null, users: [], usersFiltersByRole: [], selectedFilterUserRole: 'All' }
 );

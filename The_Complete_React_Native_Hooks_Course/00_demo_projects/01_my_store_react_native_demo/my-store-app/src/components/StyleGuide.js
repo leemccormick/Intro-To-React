@@ -27,8 +27,8 @@ export const EmptyStateView = ({ message }) => {
             <View style={appStyles.rowCenterContainer}>
                 <AntDesign style={appStyles.paddingStyle} name="warning" size={24} color={appStyles.secondaryDarkColor.color} />
                 {message
-                    ? <Text style={[appStyles.subtitleStyle, appStyles.secondaryDarkColor.color]} >{message} </Text>
-                    : <Text style={[appStyles.subtitleStyle, appStyles.secondaryDarkColor.color]} >Not Found </Text>
+                    ? <Text style={[appStyles.subtitleStyle, appStyles.secondaryDarkColor.color, appStyles.paddingStyle]} >{message} </Text>
+                    : <Text style={[appStyles.subtitleStyle, appStyles.secondaryDarkColor.color, appStyles.paddingStyle]} >Not Found </Text>
                 }
             </View>
         </View>
@@ -40,7 +40,7 @@ export const ErrorView = ({ errorMessage }) => {
         <View style={[appStyles.box, { borderColor: appStyles.secondaryErrorColor.color }]}>
             <View style={appStyles.rowCenterContainer}>
                 <MaterialIcons style={appStyles.paddingStyle} name="error-outline" size={24} color={appStyles.secondaryErrorColor.color} />
-                <Text style={[appStyles.subtitleStyle, appStyles.errorColor]} >Error : {errorMessage} </Text>
+                <Text style={[appStyles.subtitleStyle, appStyles.errorColor, appStyles.paddingStyle]} >Error : {errorMessage} </Text>
             </View>
         </View>
     );

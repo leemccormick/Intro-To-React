@@ -346,10 +346,6 @@ const fetchAllOrdersWithStatus = (dispatch) => async (status) => {
     console.log('-------------📖OrderListContext : fetchAllOrdersWithStatus-------------');
     try {
         const response = await myStoreApi.get(`/orders/all?status=${status}`);
-
-
-        console.log('319📖📖📖📖📖📖📖📖businessMode, 📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode📖📖📖📖📖📖📖📖businessMode', response.data);
-
         const payload = {
             selectedFilterStatus: status,
             totalOrdersToDisplay: response.data.length,
@@ -377,7 +373,6 @@ const updateOrderWithStatus = (dispatch) => async (status, order, inReviewMode =
             case 'Shipped':
                 updateOrderUrl = `/orders/updateOrderStatusToShipped?orderId=${order.id}`;
                 break;
-
             case 'Delivered':
                 updateOrderUrl = `/orders/updateOrderStatusToDelivered?orderId=${order.id}`;
                 break;
