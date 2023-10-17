@@ -27,6 +27,22 @@ It is a course from Udemy by Stephen Grider.
 - Build on both Android and iOS platforms
 - Master integration with Firebase for user authentication
 - Learn the core principles of navigation with React Native
+  
+### My Store Demo App
+- This is a demo application using react native to build mobile application to both adroid and ios platform.
+- This application implemented by using demo backend service localost from my demo rest api using Java spring boot.
+- https://github.com/leemccormick/Spring-Boot-3-Spring-6-Hibernate-for-Beginners/tree/main/00-spring-boot-demo-by-lee-mccormick/02-my-shop-demo-add-rest-api
+  
+<img width="400" hieght="350" alt="MyStoreDemo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/0ebe0d88-cf43-4810-9491-69ffaa737faa">
+<img width="400" hieght="350" alt="MyStoreDemo2" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/00c39d8a-6771-4c89-9e65-1b0a567f3364">
+<img width="400" hieght="350" alt="MyStoreDemo3" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/1fe2e56d-b3a6-409c-b607-33b5ca1f3ede">
+<img width="400" hieght="350" alt="MyStoreDemo4" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/bcd855a7-3cd1-4e1e-942e-40d5851de5fa">
+<img width="400" hieght="350" alt="MyStoreDemo5" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/c5983cac-dab5-428c-8dd4-6e489200968a">
+<img width="400" hieght="350" alt="MyStoreDemo6" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/49653523-4291-4922-91e5-f69a2a25a85e">
+<img width="400" hieght="350" alt="MyStoreDemo7" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/42be99b5-95ef-404b-94ea-13456e5ea5c8">
+<img width="400" hieght="350" alt="MyStoreDemo8" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/7bace8a3-2224-4c75-a386-dbe937e893a5">
+<img width="400" hieght="350" alt="MyStoreDemo9" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/4ecfea52-8741-4530-8a2c-33159a1f5f81">
+<img width="400" hieght="350" alt="MyStoreDemo10" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/1f713b88-3533-4431-bde9-27f4605787e1">
 
 ### Basic React Native Component : Section 1 - 7
 <img width="200" hieght="350" alt="Demo1" src="https://github.com/leemccormick/Intro-To-React/assets/57606580/e0687c74-f725-4e21-ba9c-ba8e738a64f1">
