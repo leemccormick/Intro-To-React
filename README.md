@@ -28,7 +28,7 @@ It is a course from Udemy by Stephen Grider.
 - Master integration with Firebase for user authentication
 - Learn the core principles of navigation with React Native
   
-### My Store Demo App
+### Demo : My Store React Native Mobile App
 - This is a demo application using react native to build mobile application to both adroid and ios platform.
 - This application implemented by using demo backend service localost from my demo rest api using Java spring boot.
 - https://github.com/leemccormick/Spring-Boot-3-Spring-6-Hibernate-for-Beginners/tree/main/00-spring-boot-demo-by-lee-mccormick/02-my-shop-demo-add-rest-api
