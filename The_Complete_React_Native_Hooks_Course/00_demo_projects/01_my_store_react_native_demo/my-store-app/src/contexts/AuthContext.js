@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { encode } from 'base-64';
 import { navigate } from "../navigationRef";
 import errorHandler from "../utils/errorHandler";
+import { baseUrl } from "../api/myStoreApi";
 
 const authReducer = (state, action) => {
     switch (action.type) {
@@ -20,7 +21,8 @@ const authReducer = (state, action) => {
 const authenticate = (dispatch) => async ({ token }) => {
     try {
         const basicAuth = 'Basic ' + token;
-        const response = await fetch('http://localhost:8081/api/mystoredemo/authentication', {
+
+        const response = await fetch(`${baseUrl}/authentication`, {
             method: 'GET',
             headers: {
                 'Authorization': basicAuth

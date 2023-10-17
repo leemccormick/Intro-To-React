@@ -48,7 +48,7 @@ const HistoryScreen = ({ navigation }) => {
 
     const OrderInfoSection = () => {
         return (<>
-            <Text h5 style={[appStyles.subtitleStyle]}> Customer Name : {fullName}</Text>
+            <Text h5 style={[appStyles.subtitleStyle]}> User Name : {fullName}</Text>
             <Text h5 style={[appStyles.subtitleStyle]}> Roles : {rolesDescription}</Text>
             <Text h5 style={[appStyles.subtitleStyle]}> {orderListState.totalOrderDescriptionToDisplay} : {orderListState.totalOrdersToDisplay}</Text>
             <EndLineView />

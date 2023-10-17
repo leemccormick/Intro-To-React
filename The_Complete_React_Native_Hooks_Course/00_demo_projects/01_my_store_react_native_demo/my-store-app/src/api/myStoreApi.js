@@ -1,8 +1,13 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
+
+export const baseUrl = Platform.OS === 'android'
+    ? 'http://10.0.2.2:8081/api/mystoredemo'
+    : 'http://localhost:8081/api/mystoredemo';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8081/api/mystoredemo'
+    baseURL: `${baseUrl}`
 });
 
 instance.interceptors.request.use(
